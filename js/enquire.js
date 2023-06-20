@@ -218,170 +218,170 @@ function validate(event) {
     // 校验表单字段
     var isValid = true;
 
-    // 校验 First name 字段
-    if (!firstNameInput.value.trim()) {
-        isValid = false;
-        errorMessage += "Please enter your First name\n"
-    }
-
-    // 校验 Last name 字段
-    if (!lastNameInput.value.trim()) {
-        isValid = false;
-        errorMessage += 'Please enter your Last name\n'
-    }
-
-    // 校验 Email 字段
-    if (!emailInput.value.trim() || !validateEmail(emailInput.value)) {
-        isValid = false;
-        errorMessage += 'Please enter a valid Email address\n'
-    }
-
-    // 校验 Address 字段
-    if (!addressInput.value.trim()) {
-        isValid = false;
-        errorMessage += 'Please enter your Street address\n'
-    }
-
-    // 校验 Town 字段
-    if (!townInput.value.trim()) {
-        isValid = false;
-        errorMessage += 'Please enter your Suburb/town\n'
-    }
-
-    // 校验 State 字段
-    if (stateSelect.value === 'error') {
-        isValid = false;
-        errorMessage += 'Please select a State\n'
-    }
-
-    // 校验 Postcode 字段
-    if (!postcodeInput.value.trim() || !validatePostcode(postcodeInput.value)) {
-        isValid = false;
-        errorMessage += 'Please enter a valid Postcode\n'
-    } else {
-        var firstWord = postcodeInput.value.trim().substring(0, 1)
-        let index = parseInt(firstWord)
-        switch (stateSelect.value) {
-            case 'VIC':
-                if (index !== 8 && index !== 3) {
-                    isValid = false;
-                    errorMessage += "The selected state must match the first digit of the postcode";
-                }
-                break
-            case 'NSW':
-                if (index !== 1 && index !== 2) {
-                    isValid = false;
-                    errorMessage += "The selected state must match the first digit of the postcode";
-                }
-                break
-            case 'QLD':
-                if (index !== 4 && index !== 9) {
-                    isValid = false;
-                    errorMessage += "The selected state must match the first digit of the postcode";
-                }
-                break
-            case 'NT':
-                if (index !== 0) {
-                    isValid = false;
-                    errorMessage += "The selected state must match the first digit of the postcode";
-                }
-                break
-            case 'WA':
-                if (index !== 6) {
-                    isValid = false;
-                    errorMessage += "The selected state must match the first digit of the postcode";
-                }
-                break
-            case 'SA':
-                if (index !== 5) {
-                    isValid = false;
-                    errorMessage += "The selected state must match the first digit of the postcode";
-                }
-                break;
-            case 'TAS':
-                if (index !== 7) {
-                    isValid = false;
-                    errorMessage += "The selected state must match the first digit of the postcode";
-                }
-                break;
-            case 'ACT':
-                if (index !== 0) {
-                    isValid = false;
-                    errorMessage += "The selected state must match the first digit of the postcode";
-                }
-                break
-            default:
-                break
-        }
-    }
-
+    // // 校验 First name 字段
+    // if (!firstNameInput.value.trim()) {
+    //     isValid = false;
+    //     errorMessage += "Please enter your First name\n"
+    // }
+    //
+    // // 校验 Last name 字段
+    // if (!lastNameInput.value.trim()) {
+    //     isValid = false;
+    //     errorMessage += 'Please enter your Last name\n'
+    // }
+    //
+    // // 校验 Email 字段
+    // if (!emailInput.value.trim() || !validateEmail(emailInput.value)) {
+    //     isValid = false;
+    //     errorMessage += 'Please enter a valid Email address\n'
+    // }
+    //
+    // // 校验 Address 字段
+    // if (!addressInput.value.trim()) {
+    //     isValid = false;
+    //     errorMessage += 'Please enter your Street address\n'
+    // }
+    //
+    // // 校验 Town 字段
+    // if (!townInput.value.trim()) {
+    //     isValid = false;
+    //     errorMessage += 'Please enter your Suburb/town\n'
+    // }
+    //
+    // // 校验 State 字段
+    // if (stateSelect.value === 'error') {
+    //     isValid = false;
+    //     errorMessage += 'Please select a State\n'
+    // }
+    //
+    // // 校验 Postcode 字段
+    // if (!postcodeInput.value.trim() || !validatePostcode(postcodeInput.value)) {
+    //     isValid = false;
+    //     errorMessage += 'Please enter a valid Postcode\n'
+    // } else {
+    //     var firstWord = postcodeInput.value.trim().substring(0, 1)
+    //     let index = parseInt(firstWord)
+    //     switch (stateSelect.value) {
+    //         case 'VIC':
+    //             if (index !== 8 && index !== 3) {
+    //                 isValid = false;
+    //                 errorMessage += "The selected state must match the first digit of the postcode";
+    //             }
+    //             break
+    //         case 'NSW':
+    //             if (index !== 1 && index !== 2) {
+    //                 isValid = false;
+    //                 errorMessage += "The selected state must match the first digit of the postcode";
+    //             }
+    //             break
+    //         case 'QLD':
+    //             if (index !== 4 && index !== 9) {
+    //                 isValid = false;
+    //                 errorMessage += "The selected state must match the first digit of the postcode";
+    //             }
+    //             break
+    //         case 'NT':
+    //             if (index !== 0) {
+    //                 isValid = false;
+    //                 errorMessage += "The selected state must match the first digit of the postcode";
+    //             }
+    //             break
+    //         case 'WA':
+    //             if (index !== 6) {
+    //                 isValid = false;
+    //                 errorMessage += "The selected state must match the first digit of the postcode";
+    //             }
+    //             break
+    //         case 'SA':
+    //             if (index !== 5) {
+    //                 isValid = false;
+    //                 errorMessage += "The selected state must match the first digit of the postcode";
+    //             }
+    //             break;
+    //         case 'TAS':
+    //             if (index !== 7) {
+    //                 isValid = false;
+    //                 errorMessage += "The selected state must match the first digit of the postcode";
+    //             }
+    //             break;
+    //         case 'ACT':
+    //             if (index !== 0) {
+    //                 isValid = false;
+    //                 errorMessage += "The selected state must match the first digit of the postcode";
+    //             }
+    //             break
+    //         default:
+    //             break
+    //     }
+    // }
+    //
     // 校验 Phone number 字段
-    if (!phoneInput.value.trim() || !validatePhoneNumber(phoneInput.value)) {
-        isValid = false;
-        errorMessage += 'Please enter a valid Phone number\n'
-    }
-
-    // 校验联系方式字段
-    var isContactSelected = false;
-    for (var i = 0; i < contactInputs.length; i++) {
-        if (contactInputs[i].checked) {
-            isContactSelected = true;
-            break;
-        }
-    }
-    if (!isContactSelected) {
-        isValid = false;
-        errorMessage += 'Please select a preferred contact method\n'
-    }
-
-    // 校验 Product 字段
-    if (productSelect.selectedIndex === 0) {
-        isValid = false;
-        errorMessage += 'Please select a Product\n'
-    }
-
-    // 校验 Quality 字段
-    if (!qualityInput.value.trim()) {
-        isValid = false;
-        errorMessage += 'Please enter Quality\n'
-    } else {
-        var qualityNumber = parseInt(qualityInput.value.trim())
-        if (isNaN(qualityNumber)) {
-            isValid = false
-            errorMessage += "Please enter a number into quality"
-        } else {
-            if (qualityNumber < 0) {
-                isValid = false
-                errorMessage += "Please enter a positive number in quality"
-            }
-        }
-    }
-
-
-    // 校验 Number of day 字段
-    if (!dayInput.value.trim()) {
-        isValid = false;
-        errorMessage += 'Please enter Number of day\n'
-    }
-
-    // 校验 Product features 字段
-    var isFeatureSelected = false;
-    for (var j = 0; j < featureInputs.length; j++) {
-        if (featureInputs[j].checked) {
-            isFeatureSelected = true;
-            break;
-        }
-    }
-    if (!isFeatureSelected) {
-        isValid = false;
-        errorMessage += 'Please select at least one Product feature\n'
-    }
-
-    // 校验 Message 字段
-    if (!messageInput.value.trim()) {
-        isValid = false;
-        errorMessage += 'Please enter your Message\n'
-    }
+    // if (!phoneInput.value.trim() || !validatePhoneNumber(phoneInput.value)) {
+    //     isValid = false;
+    //     errorMessage += 'Please enter a valid Phone number\n'
+    // }
+    //
+    // // 校验联系方式字段
+    // var isContactSelected = false;
+    // for (var i = 0; i < contactInputs.length; i++) {
+    //     if (contactInputs[i].checked) {
+    //         isContactSelected = true;
+    //         break;
+    //     }
+    // }
+    // if (!isContactSelected) {
+    //     isValid = false;
+    //     errorMessage += 'Please select a preferred contact method\n'
+    // }
+    //
+    // // 校验 Product 字段
+    // if (productSelect.selectedIndex === 0) {
+    //     isValid = false;
+    //     errorMessage += 'Please select a Product\n'
+    // }
+    //
+    // // 校验 Quality 字段
+    // if (!qualityInput.value.trim()) {
+    //     isValid = false;
+    //     errorMessage += 'Please enter Quality\n'
+    // } else {
+    //     var qualityNumber = parseInt(qualityInput.value.trim())
+    //     if (isNaN(qualityNumber)) {
+    //         isValid = false
+    //         errorMessage += "Please enter a number into quality"
+    //     } else {
+    //         if (qualityNumber < 0) {
+    //             isValid = false
+    //             errorMessage += "Please enter a positive number in quality"
+    //         }
+    //     }
+    // }
+    //
+    //
+    // // 校验 Number of day 字段
+    // if (!dayInput.value.trim()) {
+    //     isValid = false;
+    //     errorMessage += 'Please enter Number of day\n'
+    // }
+    //
+    // // 校验 Product features 字段
+    // var isFeatureSelected = false;
+    // for (var j = 0; j < featureInputs.length; j++) {
+    //     if (featureInputs[j].checked) {
+    //         isFeatureSelected = true;
+    //         break;
+    //     }
+    // }
+    // if (!isFeatureSelected) {
+    //     isValid = false;
+    //     errorMessage += 'Please select at least one Product feature\n'
+    // }
+    //
+    // // 校验 Message 字段
+    // if (!messageInput.value.trim()) {
+    //     isValid = false;
+    //     errorMessage += 'Please enter your Message\n'
+    // }
 
 
     if (isValid == false) {
