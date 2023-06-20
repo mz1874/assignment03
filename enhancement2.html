@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Enhancement</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles/bootstrap.css">
+    <script src="js/jquery-3.6.4.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <link rel="stylesheet" href="styles/layui.css">
+    <link rel="stylesheet" href="styles/enhancement.css">
+    <script src="js/layui.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-default my-nav">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+                <img alt="Brand" style="width: 100px; margin-top: -30px; height: 80px" src="images/weblogo.png">
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="index.php">HOME <span class="sr-only">(current)</span></a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="enquire.html">Enquire</a></li>
+                <li><a href="enhancement.html">Enhancement</a></li>
+                <li class="active"><a href="enhancement2.html">Enhancement2</a></li>
+                <li><a href="product.html">Product</a></li>
+            </ul>
+            <form class="navbar-form navbar-right">
+                <div class="form-group">
+                    <label>
+                        <input type="text" class="form-control" placeholder="Search">
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-default">Search</button>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Login</a></li>
+                <li><a href="#">Register</a></li>
+                <li><a href="about.html">About me</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <ul class="layui-timeline">
+
+            <li class="layui-timeline-item">
+                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                <div class="layui-timeline-content layui-text">
+                    <h2 class="layui-timeline-title">Past</h2>
+                </div>
+            </li>
+
+            <li class="layui-timeline-item">
+                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                <div class="layui-timeline-content layui-text">
+                    <h2 class="layui-timeline-title">20/5 Enhancement 1</h2>
+                    <p>
+                        On every page, dynamically style the menu
+                        <br>
+                        item for the current page, based on the page
+                        filename.
+                        <i class="layui-icon"></i>
+                    </p>
+                </div>
+            </li>
+            <li class="layui-timeline-item">
+                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                <div class="layui-timeline-content layui-text">
+                    <h2 class="layui-timeline-title">20/5 Enhancement 2</h2>
+                    <p>
+                        On enquire.html, have a checkbox that says “Billing address different from Delivery Address”.
+                        When the user checks this, <br>
+                        a separate set of Delivery Address inputs appears, and this is also
+                        added to the data stored and passed to payments.
+
+                    </p>
+                </div>
+            </li>
+            <li class="layui-timeline-item">
+                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                <div class="layui-timeline-content layui-text">
+                    <h2 class="layui-timeline-title">20/5 Enhancement 3</h2>
+                    <p>
+                        On payment.html, implement a timer so that the user only has a limited time to complete the
+                        payment after which a warning is displayed / then the browser redirects to the home page.
+                    </p>
+                </div>
+            </li>
+            <li class="layui-timeline-item">
+                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                <div class="layui-timeline-content layui-text">
+                    <div class="layui-timeline-title">
+                        <h2 class="layui-timeline-title">20 / 5, Enhancement 4</h2>
+                        <p>
+                            On payment.html, pre-load the ’Name on Credit Card’ as a concatenation of the firstname and
+                            lastname, into the input field, to enable a user to change the value.
+                        </p>
+                    </div>
+                </div>
+            </li>
+
+
+            <li class="layui-timeline-item">
+                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                <div class="layui-timeline-content layui-text">
+                    <h2 class="layui-timeline-title">20 / 5 Enhancement 5</h2>
+                    <p>
+                        On product.html, have all your products/services as variables in JavaScript and dynamically
+                        display them on the product page.
+                    </p>
+                </div>
+            </li>
+
+            <li class="layui-timeline-item">
+                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                <div class="layui-timeline-content layui-text">
+                    <h2 class="layui-timeline-title">20 / 5 Enhancement 6</h2>
+                    <h3 id="bootstrap">Grid system</h3>
+                    <p>
+                        On enquire.html, set the selection of certain product/service options to disable the ability to
+                        select another sets of options. For example of a motor car product, the selection of an
+                        “automatic transmission” might disable the ability to select between “4 speed” and “5 speed”
+                        transmissions.
+                    </p>
+                </div>
+            </li>
+
+
+            <li class="layui-timeline-item">
+                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                <div class="layui-timeline-content layui-text">
+                    <h2 class="layui-timeline-title">Now</h2>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-2">
+        <ul class="list-group">
+            <li class="list-group-item"><a href="">Enhancement 1 </a>
+                <ul class="list-group">
+                    <li class="list-group-item"><a href="index.php#header">Home Page</a></li>
+                    <li class="list-group-item"><a href="index.php#main-button">products</a></li>
+                    <li class="list-group-item"><a href="index.php#main-button">enquire</a></li>
+                    <li class="list-group-item"><a href="index.php#main-button">about</a></li>
+                </ul>
+            </li>
+
+            <li class="list-group-item"><a href="#CATEGORIES">Enhancement 2</a>
+                <ul class="list-group">
+                    <li class="list-group-item"><a href="enquire.html#real-address">different Address</a></li>
+                </ul>
+            </li>
+
+            <li class="list-group-item"><a href="payment.html">Enhancement 3</a>
+                <ul class="list-group">
+                    <li class="list-group-item"><a href="payment.html#countdown">Timer</a></li>
+                </ul>
+            </li>
+
+
+            <li class="list-group-item"><a href="payment.html">Enhancement 4</a>
+                <ul class="list-group">
+
+                </ul>
+            </li>
+
+            <li class="list-group-item"><a href="product.html">Enhancement 5</a>
+                <ul class="list-group">
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+<footer class="bs-docs-footer">
+    <div class="container">
+        <p>Designed By yw</p>
+    </div>
+</footer>
+
+</body>
+</html>

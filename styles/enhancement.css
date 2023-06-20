@@ -1,0 +1,38 @@
+li[class="list-group-item"] {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+    background-color: #fff;
+    border: none;
+}
+
+li[class="list-group-item"]:hover {
+    border-left: #2aabd2 2px solid;
+}
+
+
+li[class="list-group-item"] a {
+    text-decoration: none;
+    color: black;
+}
+
+.bs-docs-footer {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    margin-top: 100px;
+    color: #99979c;
+    text-align: center;
+    background-color: #2a2730;
+}
+
+.bs-docs-footer ul li{
+    list-style-type :none;
+}
+
+.bs-docs-footer-links {
+    padding-left: 0;
+    margin-bottom: 20px;
+}
+
+

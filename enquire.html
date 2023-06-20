@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Enquire</title>
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="js/enquire.js"></script>
+    <script src="js/enhancement.js"></script>
+</head>
+
+<body>
+<div class="header">
+    <nav class="navbar">
+        <a href="images/weblogo.png" class="logo"><img style="width: 120px" src="images/weblogo.png" alt="logo"></a>
+        <div class="menu" id="menu">
+
+        </div>
+        <div class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+    </nav>
+</div>
+
+
+<div class="form">
+    <form id="enquire-form" action="payment.html" method="post" novalidate class="basic-grey">
+        <h1>Contact Form
+            <span>Please fill all the texts in the fields.</span>
+        </h1>
+        <label>
+            <span>First name :</span>
+            <input id="first-name" pattern="[a-zA-z]{1,25}" type="text" name="name" placeholder="Your Full Name"/>
+        </label>
+
+        <label>
+            <span>Last name :</span>
+            <input id="last-name" type="text" pattern="[a-zA-z]{1,25}" name="last-name" placeholder="Your Full Name"/>
+        </label>
+
+        <label>
+            <span>Email address :</span>
+            <input id="email" type="email" name="email" placeholder="Valid Email Address"/>
+        </label>
+
+        <fieldset class="fieldset">
+            <legend>Address:</legend>
+            <label>Street address:</label> <input type="text" name="address" pattern="[a-zA-z0-9]{1,40}"><br>
+            <label>Suburb/town:</label> <input type="text" name="town" pattern="[a-zA-z0-9]{1,20}"><br>
+            <label>State:</label>
+            <select name="state" style="width: 40%">
+                <option disabled selected value="error">Please select</option>
+                <option value="VIC">VIC</option>
+                <option value="NSW">NSW</option>
+                <option value="QLD">QLD</option>
+                <option value="NT">NT</option>
+                <option value="WA">WA</option>
+                <option value="SA">SA</option>
+                <option value="TAS">TAS</option>
+                <option value="ACT">ACT</option>
+            </select>
+            <label>Postcode:</label> <input type="text" name="post-code" pattern="[0-9]{4}">
+        </fieldset>
+        <label class="pd">
+            <span class="pd">Phone number :</span>
+            <input id="phone" type="text" name="phone" pattern="[0-9]{10}"
+                   placeholder="please input your phone number"/>
+        </label>
+
+        <fieldset class="fieldset">
+            <legend>请选择首选的联系方式：</legend>
+            <div>
+                <input type="radio" id="contactChoice1" class="contact" name="contact" value="email"/>
+                <label for="contactChoice1" class="contact">email</label>
+
+                <input type="radio" id="contactChoice2" class="contact" name="contact" value="phone"/>
+                <label for="contactChoice2" class="contact">phone</label>
+
+                <input type="radio" id="contactChoice3" class="contact" name="contact" value="mail"/>
+                <label for="contactChoice3" class="contact">mail</label>
+            </div>
+        </fieldset>
+
+        <label>
+            <span class="pd">Product</span>
+            <select name="product" id="product-select" style="width: 10%; margin-top: 10px">
+                <option disabled selected>Please select</option>
+            </select>
+        </label>
+
+
+        <label>
+            <span>Quality :</span>
+            <input id="quality" type="text" name="quality"/>
+        </label>
+
+
+        <label>
+            <span>Number of day :</span>
+            <input id="day" type="text" name="day"/>
+        </label>
+
+
+        <label>
+            <span>Per price :</span>
+            <input id="price" type="text" name="price" disabled/>
+        </label>
+
+
+        <label>
+            <span>Total Cost :</span>
+            <input id="cost" type="text" name="cost" disabled/>
+        </label>
+
+
+        <fieldset class="fieldset fl">
+            <legend>Product features</legend>
+            <div>
+                <input type="checkbox" class="contact" id="input1" name="type1" value="1">
+                <label for="input1" class="contact"> Signal I/O</label>
+                <input type="checkbox" class="contact" id="vehicle2" name="type1" value="2">
+                <label for="vehicle2" class="contact"> Multiple I/O</label>
+                <input type="checkbox" class="contact" id="vehicle3" name="type1" value="3">
+                <label for="vehicle3" class="contact"> Only for Mixing </label>
+            </div>
+            <legend>Confirm Address</legend>
+            <br>
+            <div>
+                <input type="checkbox" class="contact" id="different" name="different" value="different">
+                <label for="different" class="contact"> Billing address different from Delivery Address</label>
+            </div>
+        </fieldset>
+
+        <label id="real-address" style="visibility: hidden">
+            <span>Real address :</span>
+            <input id="hidden-input" type="text" disabled="disabled" name="real-address"/>
+        </label>
+
+        <label>
+            <span class="pd">Message :</span>
+            <textarea id="message" style="margin-top: 10px" name="message" placeholder="Your Message to Us"></textarea>
+        </label>
+        <label>
+            <span>&nbsp;</span>
+            <input type="submit" class="button" value="Pay now"/>
+        </label>
+    </form>
+
+</div>
+
+<footer class="my-footer">
+    <div>
+        <ul class="list-inline">
+            <li class="list-inline-item"><a href="#"><small>Home</small></a></li>
+            <li class="list-inline-item"><a href="#"><small>Services</small></a></li>
+            <li class="list-inline-item"><a href="#"><small>Terms</small></a></li>
+            <li class="list-inline-item"><a href="#"><small>Privacy Policy</small></a></li>
+        </ul>
+        <br>
+        <hr style="width: 30%; margin: 0 auto">
+        <p class="copyright" style="color: #ffffff"><small>Monster Musk 2023</small></p>
+    </div>
+</footer>
+</body>
+</html>

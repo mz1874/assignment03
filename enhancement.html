@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Enhancement</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles/bootstrap.css">
+    <script src="js/jquery-3.6.4.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <link rel="stylesheet" href="styles/layui.css">
+    <link rel="stylesheet" href="styles/enhancement.css">
+    <script src="js/layui.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-default my-nav">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+                <img alt="Brand" style="width: 100px; margin-top: -30px; height: 80px" src="images/weblogo.png">
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="index.php">HOME <span class="sr-only">(current)</span></a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="enquire.html">Enquire</a></li>
+                <li class="active"><a href="enhancement.html">Enhancement</a></li>
+                <li><a href="enhancement2.html" target="_parent"><strong>Enhancement2</strong></a></li>
+                <li><a href="product.html">Product</a></li>
+            </ul>
+            <form class="navbar-form navbar-right">
+                <div class="form-group">
+                    <label>
+                        <input type="text" class="form-control" placeholder="Search">
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-default">Search</button>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Login</a></li>
+                <li><a href="#">Register</a></li>
+                <li><a href="about.html">About me</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <ul class="layui-timeline">
+
+            <li class="layui-timeline-item">
+                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                <div class="layui-timeline-content layui-text">
+                    <h2 class="layui-timeline-title">Past</h2>
+                </div>
+            </li>
+
+            <li class="layui-timeline-item">
+                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                <div class="layui-timeline-content layui-text">
+                    <h2 class="layui-timeline-title">17/4</h2>
+                    <p>
+                        Finished the first draft version index page on mac
+                        <br>this page with some of animations
+                        <br>but due to the layout was not quit well and can not fix big screen well
+                        <br>Then, this version has been put away <i class="layui-icon"></i>
+                    </p>
+                </div>
+            </li>
+            <li class="layui-timeline-item">
+                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                <div class="layui-timeline-content layui-text">
+                    <h2 class="layui-timeline-title">18/4</h2>
+                    <p>Finished the second version draft on mac
+                        <br>
+                        but it seems that I used a lot of pictures on main pages
+                        <br>Until now, I still not follow the instruction well.
+                    </p>
+                </div>
+            </li>
+            <li class="layui-timeline-item">
+                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                <div class="layui-timeline-content layui-text">
+                    <h2 class="layui-timeline-title">19/4 - 21 /4</h2>
+                    <p>
+                        You know almost all ideas from dream.
+                        <br> So, you know
+                    </p>
+                </div>
+            </li>
+            <li class="layui-timeline-item">
+                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                <div class="layui-timeline-content layui-text">
+                    <div class="layui-timeline-title">
+                        <h2 class="layui-timeline-title">22 / 4, Start with <strong>Home</strong></h2>
+                        <p>
+                            the first page of Index page has been designed by Axure RP
+                        </p>
+                        <h3>Navbar</h3>
+                        <p>The logo is float left inside the navbar, others are float right </p>
+                        <pre class="layui-code">
+.navbar {
+    display: flex;
+}
+                        </pre>
+                        <p>and the navbar is used flax layout, which make sure the parent element can adjust those child
+                            elements size
+                            <br>
+                            <br>
+                            the others menus will be hidden when the screen size is like below, and the burger icon will
+                            be shown
+                        </p>
+
+                        <pre class="layui-code">
+/* 响应式样式 */
+@media screen and (max-width: 1024px) {
+    .menu {
+        display: none;
+    }
+
+    .burger {
+        display: block;
+    }
+}
+                        </pre>
+                        <h3>Button with rolling-over</h3>
+                        <p>
+                            this button used a 3D transform style. When the mouse flow over the button, the button will
+                            rolling over
+                        </p>
+                    </div>
+                </div>
+            </li>
+
+
+            <li class="layui-timeline-item">
+                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                <div class="layui-timeline-content layui-text">
+                    <h2 class="layui-timeline-title">19/4 - 21 /4 Products</h2>
+                    <h3 id="CATEGORIES">CATEGORIES</h3>
+                    <p>
+                        the categories fixed on the page with absolute position, which can help users quickly position
+                        products
+                    </p>
+                    <h3>OMBRE</h3>
+                    <p>
+                        the product name is ombre, just make sure the a has a linear-gradient from one color to else
+                        <br> and, change the background as text like below
+                    </p>
+                    <pre class="layui-code">
+.info section h3 a {
+    background-image: linear-gradient(to right, #e58d31, #a40d0d, #3a0404);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+                        </pre>
+
+                </div>
+            </li>
+
+            <li class="layui-timeline-item">
+                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                <div class="layui-timeline-content layui-text">
+                    <h2 class="layui-timeline-title">26/4 Bootstarp</h2>
+                    <h3 id="bootstrap">Grid system</h3>
+                    <p>This page was designed by bootstrap,Only used Grid system
+                        Grid system can help me easily finish flexibility layout on all kind of devices
+                        <br>And the header is also from bootstrap nav . just according the rule of bootstrap.
+                        <br>we can easily and quickly design a web page, such as below
+                        <br> just ignore <strong>[ &nbsp;]</strong> to replace this by &lt; and &gt;
+                    </p>
+
+                    <pre class="layui-code">
+[div class="row"]
+  [div class="col-md-4"].col-md-4[/div]
+  [div class="col-md-4"].col-md-4[/div]
+  [div class="col-md-4">.col-md-4[/div]
+[/div]
+                        </pre>
+                    <p>the effect like below</p>
+                    <div class="row">
+                        <div class="col-md-4" style="border: 1px red solid">.col-md-4</div>
+                        <div class="col-md-4" style="border: 1px red solid">.col-md-4</div>
+                        <div class="col-md-4" style="border: 1px red solid">.col-md-4</div>
+                    </div>
+                    <p> bootstrap also support Extra small devices Phones (&lt;768px) ,Small devices Tablets
+                        (≥768px),Medium devices Desktops (≥992px) and Large devices Desktops (≥1200px)
+                        <br>if you interested you can visit the link of bootstrap here <a
+                                href="https://getbootstrap.com/docs/3.3/">bootstrap 3.14</a>
+                    </p>
+                </div>
+            </li>
+
+            <li class="layui-timeline-item">
+                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                <div class="layui-timeline-content layui-text">
+                    <h2 class="layui-timeline-title">26/4 LayUi</h2>
+                    <h3 id="layui">TimeLine</h3>
+                    <p>Layui is also a css framework, I heard this framework more than 6 years ago, this framework is
+                        lightweight
+                        <br> and people can easily start even a beginner. This framework provides a lot of good effects.
+                        <br> as you see, in this page. I used timeline to show the process of i doing the assignment
+                        <br>
+                        <br>if you interested you can visit the link of layui here <a href="https://layui.itze.cn/">layui</a>
+                        <br>
+                        身处在前端社区的繁荣之下，我们都在有意或无意地追逐。而 layui 偏偏回望当初，奔赴在返璞归真的漫漫征途，自信并勇敢着，追寻于原生态的书写指令，试图以最简单的方式诠释高效。
+                        from layui
+                    </p>
+                </div>
+            </li>
+
+            <li class="layui-timeline-item">
+                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                <div class="layui-timeline-content layui-text">
+                    <h2 id="responsive-layout" class="layui-timeline-title">19：50  26/4 &nbsp;responsive layout </h2>
+                    <p>
+                        Finished all the responsive layout by media-query which is supported Ipad Air, Ipad mini ,Big screen (laptop) and smart phone
+                    </p>
+                </div>
+            </li>
+
+
+            <li class="layui-timeline-item">
+                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                <div class="layui-timeline-content layui-text">
+                    <h2 class="layui-timeline-title">Now</h2>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-2">
+        <ul class="list-group">
+            <li class="list-group-item"><a href="">HOME</a>
+                <ul class="list-group">
+                    <li class="list-group-item"><a href="index.php#header">Have bar</a></li>
+                    <li class="list-group-item"><a href="index.php#main-button">Button</a></li>
+                </ul>
+            </li>
+
+            <li class="list-group-item"><a href="#CATEGORIES">Products</a>
+                <ul class="list-group">
+                    <li class="list-group-item"><a href="products.html#nav-left">categories</a></li>
+                    <li class="list-group-item"><a href="products.html#mic">ombre</a></li>
+                </ul>
+            </li>
+
+            <li class="list-group-item"><a href="product.html">Product</a>
+                <ul class="list-group">
+                    <li class="list-group-item"><a href="product.html#youtube">iframe</a></li>
+                </ul>
+            </li>
+
+            <li class="list-group-item"><a href="enquire.html">Enquire</a>
+                <ul class="list-group">
+
+                </ul>
+            </li>
+
+            <li class="list-group-item"><a href="enhancement.html">Enhancement</a>
+                <ul class="list-group">
+                    <li class="list-group-item"><a href="#bootstrap">bootstrap</a></li>
+                    <li class="list-group-item"><a href="#layui">layui</a></li>
+                    <li class="list-group-item"><a href="#layui">responsive-layout</a></li>
+
+                </ul>
+            </li>
+
+            <li class="list-group-item"><a href="about.html">About me</a>
+                <ul class="list-group">
+
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+<footer class="bs-docs-footer">
+    <div class="container">
+        <p>Designed and built with all the love in the world </p>
+    </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,155 @@
+/* Global styles */
+body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #333;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.about h1, h2, h3 {
+    font-weight: bold;
+    margin-top: 0;
+}
+
+.about a {
+    color: #1E90FF;
+}
+
+/* Definition list styles */
+.about dl {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 10px;
+}
+
+.about dt {
+    font-weight: bold;
+}
+
+/* Figure styles */
+.about figure {
+    float: right;
+    width: 100%;
+    max-width: 200px;
+    margin: 20px;
+    border: 2px solid #999;
+    border-radius: 50%;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Table styles */
+.about table {
+    margin: 20px auto;
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 800px;
+}
+
+.about th, td {
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+.about .th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Personal profile styles */
+.about-main section {
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+.about-main h2 {
+    margin-top: 40px;
+}
+
+.about-main ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.about-main ul li {
+    margin-bottom: 10px;
+    padding: 1px;
+}
+
+/* Footer styles */
+.about-main footer {
+    background-color: #f2f2f2;
+    padding: 20px;
+    text-align: center;
+    margin-top: 40px;
+}
+
+/* Media Queries */
+@media only screen and (min-width: 768px) {
+    /* Figure styles */
+    .about-main figure {
+        width: 200px;
+    }
+
+    /* Table styles */
+    .about-main table {
+        width: 60%;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    /* Personal profile styles */
+    .about-main section {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    /* Definition list styles */
+    .about-main  dl {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    /* Figure styles */
+    .about-main  figure {
+        margin: 20px 0;
+        float: none;
+        width: 30%;
+        max-width: none;
+    }
+
+    /* Table styles */
+    .about-main  table {
+        margin: 20px 0;
+        width: 50%;
+        max-width: none;
+    }
+}
+
+/* 适用于桌面设备 */
+@media only screen and (min-width: 769px) {
+    .about-main table {
+        margin: auto;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    .about-main td, th {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: center;
+    }
+
+    .about-main th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+    }
+
+    .about-main tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+}
