@@ -12,12 +12,14 @@ function getProducts() {
     if (localStorage.getItem("products") != null) {
         var products = JSON.parse(localStorage.getItem("products"));
         var selectElement = document.getElementById("product-select");
-        for (let i = 0; i < products.length; i++) {
-            var optionElement = document.createElement("option");
-            optionElement.setAttribute('value', products[i].id)
-            optionElement.setAttribute('disabled', "true")
-            optionElement.textContent = products[i].type + "\t" + products[i].name
-            selectElement.appendChild(optionElement)
+        if (selectElement != null){
+            for (let i = 0; i < products.length; i++) {
+                var optionElement = document.createElement("option");
+                optionElement.setAttribute('value', products[i].id)
+                optionElement.setAttribute('disabled', "true")
+                optionElement.textContent = products[i].type + "\t" + products[i].name
+                selectElement.appendChild(optionElement)
+            }
         }
     }
 }
