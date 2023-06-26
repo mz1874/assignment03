@@ -16,7 +16,9 @@ function getProducts() {
             for (let i = 0; i < products.length; i++) {
                 var optionElement = document.createElement("option");
                 optionElement.setAttribute('value', products[i].id)
-                optionElement.setAttribute('disabled', "true")
+                if (document.title !== "Fix_order") {
+                    optionElement.setAttribute('disabled', "true")
+                }
                 optionElement.textContent = products[i].type + "\t" + products[i].name
                 selectElement.appendChild(optionElement)
             }
@@ -61,16 +63,22 @@ function getLocalStorage() {
         for (var i = 0; i < contactInputs.length; i++) {
             contactInputs[i].checked = contactValue[i]
         }
-        productSelect.value = 9;
+        productSelect.value = formObj.productSelect;
         qualityInput.value = formObj.qualityInput;
         dayInput.value = formObj.dayInput;
-        priceInput.value = formObj.priceInput;
+        if (priceInput!=null){
+            priceInput.value = formObj.priceInput;
+        }
         costInput.value = formObj.costInput;
 // 设置选中的特征
         if (formObj.realAddress !== ""){
             realAddress.value = formObj.realAddress
         }else {
-            realAddress.value = formObj.addressInput + "\t" + formObj.townInput +"\t" + formObj.stateSelect + "\t" +formObj.postcodeInput;
+            if (formObj.addressInput == "" || formObj.townInput  == "" || formObj.stateSelect == "" ||formObj.postcodeInput == "" ){
+                realAddress.value = ""
+            }else {
+
+            }
         }
         var featureValues = formObj.featureInputs;
         for (let i = 0; i < featureInputs.length; i++) {
@@ -196,6 +204,7 @@ function validation() {
     // // } else {
     // //     enableAllElement()
     // // }
+    document.getElementById("")
     enableAllElement();
     return result;
 

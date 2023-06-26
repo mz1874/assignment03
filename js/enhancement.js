@@ -208,9 +208,11 @@ function enhancement3() {
     var htmlElement = document.getElementById("credit-name");
     var formData = localStorage.getItem("formData");
     if (htmlElement != null) {
-        if (formData != null) {
-            var formObj = JSON.parse(formData)
-            htmlElement.value = formObj.firstNameInput +"\t"+ formObj.lastNameInput;
+        if (document.title != "Fix_order"){
+            if (formData != null) {
+                var formObj = JSON.parse(formData)
+                htmlElement.value = formObj.firstNameInput +"\t"+ formObj.lastNameInput;
+            }
         }
     }
 }
@@ -225,6 +227,7 @@ function init() {
     changeStyle();
     if (document.getElementById("different") != null) {
         document.getElementById("different").onclick = changeVisibility;
+        alert("调用")
     }
     enhancement3();
     var regitser = document.getElementById("register");

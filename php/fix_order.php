@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Confirmation Page</title>
+    <title>Fix_order</title>
     <link rel="stylesheet" type="text/css" href="../styles/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--    <script src="js/enquire.js"></script>-->
@@ -38,11 +38,11 @@
             <?php
             session_start();
 
-            $error = $_SESSION['nameErrorMessage'];
-            if (isset($error)):
+            if (isset($_SESSION['nameErrorMessage'])):
+                $error =$_SESSION['nameErrorMessage'];
                 echo "<input id='first-name' pattern='[a-zA-z]{1,25}' type='text' name='name' placeholder='$error' />";
             else:
-                echo "<input id='first-name' pattern='[a-zA-z]{1,25}' type='text' name='name' />";
+                echo "<input id='first-name' pattern='[a-zA-z]{1,25}' type='text' disabled name='name' />";
             endif;
             //            session_destroy();
             ?>
@@ -55,7 +55,7 @@
                 $error = $_SESSION['lastNameErrorMessage'];
                 echo "<input id='last-name' pattern='[a-zA-z]{1,25}' type='text' name='last-name' placeholder='$error' />";
             else:
-                echo "<input id='last-name' pattern='[a-zA-z]{1,25}' type='text' name='last-name' />";
+                echo "<input id='last-name' pattern='[a-zA-z]{1,25}' type='text' disabled name='last-name' />";
             endif;
             ?>
         </label>
@@ -67,7 +67,7 @@
                 $error = $_SESSION['emailErrorMessage'];
                 echo "<input id='email' pattern='[a-zA-z]{1,25}' type='email' name='email' placeholder='$error' />";
             else:
-                echo "<input id='email' pattern='[a-zA-z]{1,25}' type='email' name='email' />";
+                echo "<input id='email' pattern='[a-zA-z]{1,25}' type='email' disabled name='email' />";
             endif;
             ?>
         </label>
@@ -80,7 +80,7 @@
                 $error = $_SESSION['addressErrorMessage'];
                 echo "<input  pattern='[a-zA-z0-9]{1,40}' type='text' name='address' placeholder='$error' />";
             else:
-                echo "<input  pattern='[a-zA-z0-9]{1,40}' type='text' name='address' />";
+                echo "<input  pattern='[a-zA-z0-9]{1,40}' type='text' disabled name='address' />";
             endif;
             ?>
 
@@ -91,12 +91,12 @@
                 $error = $_SESSION['townErrorMessage'];
                 echo "<input  pattern='[a-zA-z0-9]{1,20}' type='text' name='town' placeholder='$error' />";
             else:
-                echo "<input  pattern='[a-zA-z0-9]{1,20}' type='text' name='town' />";
+                echo "<input  pattern='[a-zA-z0-9]{1,20}' type='text'  disabled name='town' />";
             endif;
             //            session_destroy();
             ?>
 
-            <label class="colored">State:</label> <select name="state" style="width: 10%" disabled>
+            <label class="colored">State:</label> <select name="state" style="width: 10%">
                 <option value="VIC">VIC</option>
                 <option value="NSW">NSW</option>
                 <option value="QLD">QLD</option>
@@ -109,84 +109,174 @@
             <?php
             if (isset($_SESSION['stateErrorMessage'])):
                 $error = $_SESSION['stateErrorMessage'];
-                echo "<lable>$error</lable>";
+                echo "<lable style='color: red'>$error</lable>";
             endif;
             ?>
-            <label class="colored">Postcode:</label> <input type="text" name="post-code" pattern="[0-9]{4}" disabled>
+
+
+            <label class="colored">Postcode:</label>
+            <?php
+            if (isset($_SESSION['postCodeErrorMessage'])):
+                $error = $_SESSION['postCodeErrorMessage'];
+                echo "<input  pattern='[0-9]{4}' type='text' name='post-code' placeholder='$error' />";
+            else:
+                echo "<input  pattern='[0-9]{4}' type='text' disabled name='post-code' />";
+            endif;
+            //            session_destroy();
+            ?>
         </fieldset>
         <label class="pd">
             <span class="pd colored">Phone number :</span>
-            <input id="phone" type="text" name="phone" pattern="[0-9]{10}"
-                   disabled/>
+            <?php
+            if (isset($_SESSION['phoneErrorMessage'])):
+                $error = $_SESSION['phoneErrorMessage'];
+                echo "<input id='phone' pattern='[0-9]{10}' type='text' name='phone' placeholder='$error' />";
+            else:
+                echo "<input id='phone' pattern='[0-9]{10}' disabled type='text' name='phone' />";
+            endif;
+            //            session_destroy();
+            ?>
         </label>
 
         <fieldset class="fieldset">
             <legend>Please select the contact type：</legend>
             <div>
-                <input type="radio" id="contactChoice1" class="contact" name="contact" value="email" disabled/>
+                <input type="radio" id="contactChoice1" class="contact" name="contact" value="email"/>
                 <label for="contactChoice1" class="contact">email</label>
 
-                <input type="radio" id="contactChoice2" class="contact" name="contact" value="phone" disabled/>
+                <input type="radio" id="contactChoice2" class="contact" name="contact" value="phone"/>
                 <label for="contactChoice2" class="contact">phone</label>
 
-                <input type="radio" id="contactChoice3" class="contact" name="contact" value="mail" disabled/>
+                <input type="radio" id="contactChoice3" class="contact" name="contact" value="mail"/>
                 <label for="contactChoice3" class="contact">mail</label>
             </div>
+            <?php
+            if (isset($_SESSION['contactErrorMessage']) && $_SESSION['contactErrorMessage'] !=''):
+                $error = $_SESSION['contactErrorMessage'];
+                echo "<lable style='color: red'>&nbsp;&nbsp;&nbsp;&nbsp; $error</lable>";
+            endif;
+            //            session_destroy();
+            ?>
+
         </fieldset>
 
         <label>
             <span class="pd">Product</span>
             <select name="product" id="product-select" style="width: 10%; margin-top: 10px">
-                <option disabled selected>Please select</option>
+                <option>Please select</option>
             </select>
+            <?php
+            if (isset($_SESSION['productErrorMessage']) && $_SESSION['productErrorMessage'] != ""):
+                $error = $_SESSION['productErrorMessage'];
+                echo "<lable style='color: red'>&nbsp;&nbsp;&nbsp;&nbsp; $error</lable>";
+            endif;
+            ?>
+
         </label>
 
 
         <label>
             <span>Quality :</span>
-            <input id="quality" type="text" disabled name="quality"/>
+            <?php
+            if (isset($_SESSION['qualityErrorMessage'])):
+                $error = $_SESSION['qualityErrorMessage'];
+                echo "<input id='quality' type='text'  name='quality' placeholder='$error'/>";
+            else:
+                echo "<input id='quality' type='text' disabled  name='quality'/>";
+            endif;
+            //            session_destroy();
+            ?>
         </label>
 
 
         <label>
             <span>Number of day :</span>
-            <input id="day" type="text" disabled name="day"/>
+            <?php
+            if (isset($_SESSION['dayErrorMessage'])):
+                $error = $_SESSION['dayErrorMessage'];
+                echo "<input id='day' type='text' name='day' placeholder='$error'/>";
+            else:
+                echo "<input id='day' type='text' disabled name='day'/>";
+            endif;
+            ?>
+
+
         </label>
 
 
         <label>
             <span>Per price :</span>
-            <input id="price" type="text" name="price" disabled/>
+            <?php
+            if (isset($_SESSION['productErrorMessage'])):
+                $error = $_SESSION['productErrorMessage'];
+                echo "<input id='day' type='text' name='price' disabled placeholder='$error'/>";
+            else:
+                echo "<input id='day' type='text' disabled name='price'/>";
+            endif;
+            ?>
         </label>
 
 
         <label>
             <span>Total Cost :</span>
-            <input id="cost" type="text" name="cost" disabled/>
+            <?php
+            if (isset($_SESSION['productErrorMessage'])):
+                $error = $_SESSION['productErrorMessage'];
+                echo "<input id='cost' type='text' name='cost' disabled placeholder='$error'/>";
+            else:
+                echo "<input id='cost' type='text' name='cost' disabled/>";
+            endif;
+            ?>
+
         </label>
 
 
         <fieldset class="fieldset fl">
             <legend>Product features</legend>
             <div>
-                <input type="checkbox" class="contact" disabled id="input1" name="type1" value="1">
+                <input type="checkbox" class="contact" id="input1" name="type1" value="1">
                 <label for="input1" class="contact"> Signal I/O</label>
-                <input type="checkbox" class="contact" disabled id="vehicle2" name="type1" value="2">
+                <input type="checkbox" class="contact" id="vehicle2" name="type1" value="2">
                 <label for="vehicle2" class="contact"> Multiple I/O</label>
-                <input type="checkbox" class="contact" disabled id="vehicle3" name="type1" value="3">
+                <input type="checkbox" class="contact" id="vehicle3" name="type1" value="3">
                 <label for="vehicle3" class="contact"> Only for Mixing </label>
             </div>
+            <?php
+
+            if (isset($_SESSION['type1ErrorMessage']) && $_SESSION['type1ErrorMessage'] != ""):
+                $error = $_SESSION['type1ErrorMessage'];
+                echo "<lable style='color: red'>&nbsp;&nbsp;&nbsp;&nbsp; $error</lable>";
+            endif;
+            ?>
         </fieldset>
+
 
         <label id="real-address">
             <span>Real address :</span>
-            <input id="hidden-input" type="text" disabled="disabled" name="real-address"/>
+            <?php
+            if (isset($_SESSION['realAddressErrorMessage']) && $_SESSION['realAddressErrorMessage'] !=""):
+                $error = $_SESSION['realAddressErrorMessage'];
+                echo "<input id='hidden-input' type='text' name='real-address'/>";
+            else:
+                echo "<input id='hidden-input' type='text' disabled name='real-address'/>";
+            endif;
+            ?>
+
         </label>
 
         <label>
             <span class="pd">Message :</span>
-            <textarea id="message" disabled style="margin-top: 10px" name="message"
-                      placeholder="Your Message to Us"></textarea>
+            <?php
+            if (isset($_SESSION['messageErrorMessage'])):
+                $error = $_SESSION['messageErrorMessage'];
+                echo "<textarea id='message'  style='margin-top: 10px' name='message'
+                      placeholder='$error'></textarea>";
+            else:
+                echo "<textarea id='message'  style='margin-top: 10px' name='message'
+                      placeholder='Your Message to Us' disabled></textarea>";
+            endif;
+            ?>
+
         </label>
 
         <h1 style="text-align: center; color: red">Your payment details</h1>
@@ -203,30 +293,71 @@
                 <input type="radio" id="credit_type3" class="contact" name="credit_card" value="American Express"/>
                 <label for="contactChoice3" class="contact">American Express</label>
             </div>
+
+            <?php
+            if (isset($_SESSION['credit_cardErrorMessage']) && $_SESSION['credit_cardErrorMessage'] != ""):
+                $error = $_SESSION['credit_cardErrorMessage'];
+                echo "<lable style='color: red'>&nbsp;&nbsp;&nbsp;&nbsp; $error</lable>";
+            endif;
+            ?>
+
         </fieldset>
 
 
         <label>
             <span>Name on credit card:</span>
-            <input id="credit-name" type="text" name="creditName"/>
+            <?php
+            if (isset($_SESSION["creditNameErrorMessage"])):
+                $error = $_SESSION['creditNameErrorMessage'];
+                echo "<input id='credit-name' type='text' name='creditName' placeholder='$error'/>";
+            else:
+                echo "<input id='credit-name' type='text' disabled name='creditName'/>";
+            endif;
+            ?>
         </label>
 
 
         <label>
             <span>Credit card number:</span>
-            <input id="credit-number" type="text" name="creditNumber"/>
+            <?php
+            if (isset($_SESSION['creditNumberErrorMessage'])):
+                $error = $_SESSION['creditNumberErrorMessage'];
+                echo "<input id='credit-number' type='text' name='creditNumber' placeholder='$error'/>";
+            else:
+                echo "<input id='credit-number' type='text' disabled name='creditNumber'/>";
+            endif;
+            ?>
+
         </label>
 
 
         <label>
             <span>Credit card expiry date (mm-yy)</span>
-            <input id="expiry-date" type="text" pattern="(0[1-9]|1[0-2])-[0-9]{2}" name="expiryData"/>
+            <?php
+            if (isset($_SESSION['expiryDataErrorMessage'])):
+                $error = $_SESSION['expiryDataErrorMessage'];
+                echo "<input id='expiry-date' type='text' pattern='(0[1-9]|1[0-2])-[0-9]{2}' name='expiryData' placeholder='$error'/>";
+            else:
+                echo "<input id='expiry-date' type='text' disabled  pattern='(0[1-9]|1[0-2])-[0-9]{2}' name='expiryData'/>";
+            endif;
+            ?>
+
+
+
         </label>
 
 
         <label>
             <span>Card verification value (CVV)</span>
-            <input id="cvv" type="text" name="cvv"/>
+            <?php
+            if (isset($_SESSION['cvvErrorMessage'])):
+                $error = $_SESSION['cvvErrorMessage'];
+                echo "<input id='cvv' type='text' name='cvv' placeholder='$error'/>";
+            else:
+                echo "<input id='cvv' type='text' disabled name='cvv'/>";
+            endif;
+            session_destroy();
+            ?>
         </label>
 
 

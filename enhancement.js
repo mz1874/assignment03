@@ -208,9 +208,11 @@ function enhancement3() {
     var htmlElement = document.getElementById("credit-name");
     var formData = localStorage.getItem("formData");
     if (htmlElement != null) {
-        if (formData != null) {
-            var formObj = JSON.parse(formData)
-            htmlElement.value = formObj.firstNameInput +"\t"+ formObj.lastNameInput;
+        if (document.title != "Fix_order"){
+            if (formData != null) {
+                var formObj = JSON.parse(formData)
+                htmlElement.value = formObj.firstNameInput +"\t"+ formObj.lastNameInput;
+            }
         }
     }
 }

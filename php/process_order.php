@@ -71,9 +71,7 @@ if (isset($_POST["town"]) && $_POST["town"] != '') {
 }
 
 
-
-
-if (isset($_POST["state"]) && $_POST["state"] != '') {
+if (isset($_POST["state"])) {
     $state = sanitize($_POST["state"]);
 } else {
     $stateErrorMessage = "Please select your state.\n";
@@ -89,65 +87,65 @@ if (isset($_POST["post-code"]) && isset($_POST["state"])) {
         case 'VIC':
             if ($index !== 8 && $index !== 3) {
                 $isValid = false;
-                $stateErrorMessage = "The selected state must match the first digit of the postcode";
-                $_SESSION['stateErrorMessage'] = $stateErrorMessage;
+                $postCodeErrorMessage = "The selected state must match the first digit of the postcode";
+                $_SESSION['postCodeErrorMessage'] = $postCodeErrorMessage;
             }
             break;
         case 'NSW':
             if ($index !== 1 && $index !== 2) {
                 $isValid = false;
-                $stateErrorMessage = "The selected state must match the first digit of the postcode";
-                $_SESSION['stateErrorMessage'] = $stateErrorMessage;
+                $postCodeErrorMessage = "The selected state must match the first digit of the postcode";
+                $_SESSION['postCodeErrorMessage'] = $postCodeErrorMessage;
             }
             break;
         case 'QLD':
             if ($index !== 4 && $index !== 9) {
                 $isValid = false;
-                $stateErrorMessage = "The selected state must match the first digit of the postcode";
-                $_SESSION['stateErrorMessage'] = $stateErrorMessage;
+                $postCodeErrorMessage = "The selected state must match the first digit of the postcode";
+                $_SESSION['postCodeErrorMessage'] = $postCodeErrorMessage;
             }
             break;
         case 'NT':
             if ($index !== 0) {
                 $isValid = false;
-                $stateErrorMessage = "The selected state must match the first digit of the postcode";
-                $_SESSION['stateErrorMessage'] = $stateErrorMessage;
+                $postCodeErrorMessage = "The selected state must match the first digit of the postcode";
+                $_SESSION['postCodeErrorMessage'] = $postCodeErrorMessage;
             }
             break;
         case 'WA':
             if ($index !== 6) {
                 $isValid = false;
-                $stateErrorMessage = "The selected state must match the first digit of the postcode";
-                $_SESSION['stateErrorMessage'] = $stateErrorMessage;
+                $postCodeErrorMessage = "The selected state must match the first digit of the postcode";
+                $_SESSION['postCodeErrorMessage'] = $postCodeErrorMessage;
             }
             break;
         case 'SA':
             if ($index !== 5) {
                 $isValid = false;
-                $stateErrorMessage = "The selected state must match the first digit of the postcode";
-                $_SESSION['stateErrorMessage'] = $stateErrorMessage;
+                $postCodeErrorMessage = "The selected state must match the first digit of the postcode";
+                $_SESSION['postCodeErrorMessage'] = $postCodeErrorMessage;
             }
             break;
         case 'TAS':
             if ($index !== 7) {
                 $isValid = false;
-                $stateErrorMessage = "The selected state must match the first digit of the postcode";
-                $_SESSION['stateErrorMessage'] = $stateErrorMessage;
+                $postCodeErrorMessage = "The selected state must match the first digit of the postcode";
+                $_SESSION['postCodeErrorMessage'] = $postCodeErrorMessage;
             }
             break;
         case 'ACT':
             if ($index !== 0) {
                 $isValid = false;
-                $stateErrorMessage = "The selected state must match the first digit of the postcode";
-                $_SESSION['stateErrorMessage'] = $stateErrorMessage;
+                $postCodeErrorMessage = "The selected state must match the first digit of the postcode";
+                $_SESSION['postCodeErrorMessage'] = $postCodeErrorMessage;
             }
             break;
         default:
             break;
     }
 } else {
-    $stateErrorMessage = "Please select your postCode.\n";
-    $_SESSION['stateErrorMessage'] = $stateErrorMessage;
+    $stateErrorMessage = "Please input your postCode.\n";
+    $_SESSION['postCodeErrorMessage'] = $stateErrorMessage;
     $validate = false;
 }
 
@@ -165,18 +163,20 @@ if (isset($_POST["phone"]) && $_POST['phone'] != '') {
     $validate = false;
 }
 
-if (isset($_POST["contact"]) && $_POST["contact"] != '') {
-    $contact = sanitize($_POST["contact"]);
-} else {
-    $contactErrorMessage = "Please select your contact type.\n";
-    $_SESSION['contactErrorMessage'] = $contactErrorMessage;
-    $validate = false;
-}
+//if (isset($_POST["contact"])) {
+//    $contact = sanitize($_POST["contact"]);
+//} else {
+//    echo $_POST["contact"];contactErrorMessage;
+//    $contactErrorMessage = "Please select your contact type.\n";
+//    $_SESSION['contactErrorMessage'] = $contactErrorMessage;
+//    $validate = false;
+//}
+echo $_POST['contact'];
 
 if (isset($_POST["product"])) {
     $product = sanitize($_POST["product"]);
 } else {
-    $productErrorMessage = "Please select your product type.\n";
+    $productErrorMessage = "Please select your product\n";
     $_SESSION['productErrorMessage'] = $productErrorMessage;
     $validate = false;
 }
@@ -197,13 +197,21 @@ if (isset($_POST["day"]) && $_POST["day"] != '') {
     $validate = false;
 }
 
-//if (isset($_POST["price"])) {
-//    $price = sanitize($_POST["price"]);
-//}
-//
-//if (isset($_POST["cost"])) {
-//    $cost = sanitize($_POST["cost"]);
-//}
+if (isset($_POST["price"])) {
+    $price = sanitize($_POST["price"]);
+} else {
+    $priceErrorMessage = "You did not select a product\n";
+    $_SESSION['priceErrorMessage'] = $priceErrorMessage;
+    $validate = false;
+}
+
+if (isset($_POST["cost"])) {
+    $cost = sanitize($_POST["cost"]);
+} else {
+    $costErrorMessage = "You did not select a product or did not input the day or quality\n";
+    $_SESSION['costErrorMessage'] = $costErrorMessage;
+    $validate = false;
+}
 
 if (isset($_POST["type1"]) && $_POST["type1"] != "") {
     $type1 = sanitize($_POST["type1"]);
@@ -214,58 +222,75 @@ if (isset($_POST["type1"]) && $_POST["type1"] != "") {
 }
 
 
-if ($validate == false){
+if (isset($_POST["real-address"]) && $_POST["real-address"] != '') {
+    $realAddress = sanitize($_POST["real-address"]);
+}
+//else {
+//    $realAddressErrorMessage = "You did not input the real-address \n";
+//    $_SESSION['realAddressErrorMessage'] = $realAddressErrorMessage;
+//    $validate = false;
+//}
+
+if (isset($_POST["message"]) && $_POST["message"] != "") {
+    $message = sanitize($_POST["message"]);
+} else {
+    $messageErrorMessage = "You did not input message \n";
+    $_SESSION['messageErrorMessage'] = $messageErrorMessage;
+    $validate = false;
+}
+
+
+if (isset($_POST["credit_card"])) {
+    $credit_card = sanitize($_POST["credit_card"]);
+} else {
+    $credit_cardErrorMessage = "You did not select the card type \n";
+    $_SESSION['credit_cardErrorMessage'] = $credit_cardErrorMessage;
+    $validate = false;
+}
+
+if (isset($_POST["creditName"]) && trim($_POST["creditName"]) !='') {
+    $creditName = sanitize($_POST["creditName"]);
+} else {
+    $creditNameErrorMessage = "You did not input the credit card Name \n";
+    $_SESSION['creditNameErrorMessage'] = $creditNameErrorMessage;
+    $validate = false;
+}
+
+
+if (isset($_POST["creditNumber"]) && $_POST["creditNumber"] !='') {
+    $creditNumber = sanitize($_POST["creditNumber"]);
+} else {
+    $creditNumberErrorMessage = "You did not input the creditNumber \n";
+    $_SESSION['creditNumberErrorMessage'] = $creditNumberErrorMessage;
+    $validate = false;
+}
+
+
+if (isset($_POST["expiryData"]) && $_POST["expiryData"] !='') {
+    $expiryData = sanitize($_POST["expiryData"]);
+} else {
+    $expiryDataErrorMessage = "You did not input the expiryData \n";
+    $_SESSION['expiryDataErrorMessage'] = $expiryDataErrorMessage;
+    $validate = false;
+}
+
+if (isset($_POST["cvv"]) && $_POST["cvv"] !='') {
+    $cvv = sanitize($_POST["cvv"]);
+} else {
+    $errorMessage = "You did not input the cvv \n";
+    $_SESSION['cvvErrorMessage'] = $errorMessage;
+    $validate = false;
+}
+
+
+if ($validate == false) {
     header("location:fix_order.php");
 }
 
-//
-//if (isset($_POST["real-address"])) {
-//    $realAddress = sanitize($_POST["real-address"]);
-//} else {
-//    $errorMessage .= "You did not input the real-address \n";
-//    $validate = false;
-//}
-//
-//if (isset($_POST["message"])) {
-//    $message = sanitize($_POST["message"]);
-//}
-//
-//
-//if (isset($_POST["credit_card"])) {
-//    $credit_card = sanitize($_POST["credit_card"]);
-//} else {
-//    $errorMessage .= "You did not input the credit_card \n";
-//    $validate = false;
-//}
-//
-//if (isset($_POST["creditName"])) {
-//    $creditName = sanitize($_POST["creditName"]);
-//} else {
-//    $errorMessage .= "You did not input the creditName \n";
-//    $validate = false;
-//}
-//
-//
-//if (isset($_POST["creditNumber"])) {
-//    $creditNumber = sanitize($_POST["creditNumber"]);
-//} else {
-//    $errorMessage .= "You did not input the creditNumber \n";
-//    $validate = false;
-//}
-//
-//
-//if (isset($_POST["expiryData"])) {
-//    $expiryData = sanitize($_POST["expiryData"]);
-//} else {
-//    $errorMessage .= "You did not input the expiryData \n";
-//    $validate = false;
-//}
-//
-//if (isset($_POST["cvv"])) {
-//    $cvv = sanitize($_POST["cvv"]);
-//} else {
-//    $errorMessage .= "You did not input the cvv \n";
-//    $validate = false;
-//}
-
+foreach ($_SESSION as $key => $value) {
+    echo "Key: $key, Value: $value<br>";
+}
+//echo $state;
+//echo $stateErrorMessage
+//echo $expiryDataErrorMessage;
 ?>
