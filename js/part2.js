@@ -86,8 +86,7 @@ function getLocalStorage() {
         }
         messageInput.value = formObj.messageInput;
 
-    //     name
-    //     document.getElementById("credit-name").value = formObj.firstNameInput + formObj.lastNameInput;
+        document.getElementById("credit-name").value = formObj.firstNameInput + formObj.lastNameInput;
 
     }
 }
@@ -118,7 +117,7 @@ function validation() {
     // }
     //
     //
-    // // 验证姓名
+    // 验证姓名
     // const creditName = creditNameInput.value.trim();
     // if (creditName === '') {
     //     errorMessage += "Please input the owner name of the card \n"

@@ -6,8 +6,8 @@
     <link rel="stylesheet" type="text/css" href="../styles/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--    <script src="js/enquire.js"></script>-->
-    <script src="../js/part2.js"></script>
-    <script src="../js/enhancement.js"></script>
+<!--        <script src="../js/part2.js"></script>-->
+<!--        <script src="../js/enhancement.js"></script>-->
 
 </head>
 
@@ -28,7 +28,7 @@
 
 
 <div class="form form-payment">
-    <form id="enquire-form" action="php/process_order.php" method="post" novalidate="novalidate" class="basic-grey">
+    <form id="enquire-form" action="process_order.php" method="post" novalidate="novalidate" class="basic-grey">
         <h1 style="color: red">Fix Detail information
             <span>Please Confirm all your information in the fields.</span>
             <div id="countdown"></div>
@@ -37,12 +37,14 @@
             <span class="colored">First name :</span>
             <?php
             session_start();
-
             if (isset($_SESSION['nameErrorMessage'])):
-                $error =$_SESSION['nameErrorMessage'];
+                $error = $_SESSION['nameErrorMessage'];
                 echo "<input id='first-name' pattern='[a-zA-z]{1,25}' type='text' name='name' placeholder='$error' />";
+                if (isset($_SESSION['nameErrorMessage2'])):
+                    echo "<lable style='color: red'>&nbsp;&nbsp;&nbsp;&nbsp; {$_SESSION["nameErrorMessage2"]} </lable>";
+                endif;
             else:
-                echo "<input id='first-name' pattern='[a-zA-z]{1,25}' type='text' disabled name='name' />";
+                echo "<input id='first-name' pattern='[a-zA-z]{1,25}' type='text' value='{$_SESSION["name"]}' disabled name='name' />";
             endif;
             //            session_destroy();
             ?>
@@ -55,7 +57,7 @@
                 $error = $_SESSION['lastNameErrorMessage'];
                 echo "<input id='last-name' pattern='[a-zA-z]{1,25}' type='text' name='last-name' placeholder='$error' />";
             else:
-                echo "<input id='last-name' pattern='[a-zA-z]{1,25}' type='text' disabled name='last-name' />";
+                echo "<input id='last-name' pattern='[a-zA-z]{1,25}' type='text' value='{$_SESSION["lastName"]}' disabled name='last-name' />";
             endif;
             ?>
         </label>
@@ -67,7 +69,7 @@
                 $error = $_SESSION['emailErrorMessage'];
                 echo "<input id='email' pattern='[a-zA-z]{1,25}' type='email' name='email' placeholder='$error' />";
             else:
-                echo "<input id='email' pattern='[a-zA-z]{1,25}' type='email' disabled name='email' />";
+                echo "<input id='email' pattern='[a-zA-z]{1,25}' type='email' value='{$_SESSION["email"]}'  disabled name='email' />";
             endif;
             ?>
         </label>
@@ -80,7 +82,7 @@
                 $error = $_SESSION['addressErrorMessage'];
                 echo "<input  pattern='[a-zA-z0-9]{1,40}' type='text' name='address' placeholder='$error' />";
             else:
-                echo "<input  pattern='[a-zA-z0-9]{1,40}' type='text' disabled name='address' />";
+                echo "<input  pattern='[a-zA-z0-9]{1,40}' type='text' value='{$_SESSION["address"]}'  disabled name='address' />";
             endif;
             ?>
 
@@ -91,25 +93,134 @@
                 $error = $_SESSION['townErrorMessage'];
                 echo "<input  pattern='[a-zA-z0-9]{1,20}' type='text' name='town' placeholder='$error' />";
             else:
-                echo "<input  pattern='[a-zA-z0-9]{1,20}' type='text'  disabled name='town' />";
+                echo "<input  pattern='[a-zA-z0-9]{1,20}' type='text' value='{$_SESSION["town"]}'   disabled name='town' />";
             endif;
             //            session_destroy();
             ?>
 
-            <label class="colored">State:</label> <select name="state" style="width: 10%">
-                <option value="VIC">VIC</option>
-                <option value="NSW">NSW</option>
-                <option value="QLD">QLD</option>
-                <option value="NT">NT</option>
-                <option value="WA">WA</option>
-                <option value="SA">SA</option>
-                <option value="TAS">TAS</option>
-                <option value="ACT">ACT</option>
-            </select>
+            <!--            <label class="colored">State:</label> <select name="state" style="width: 10%">-->
+            <!--                <option value="VIC">VIC</option>-->
+            <!--                <option value="NSW">NSW</option>-->
+            <!--                <option value="QLD">QLD</option>-->
+            <!--                <option value="NT">NT</option>-->
+            <!--                <option value="WA">WA</option>-->
+            <!--                <option value="SA">SA</option>-->
+            <!--                <option value="TAS">TAS</option>-->
+            <!--                <option value="ACT">ACT</option>-->
+            <!--            </select>-->
             <?php
             if (isset($_SESSION['stateErrorMessage'])):
                 $error = $_SESSION['stateErrorMessage'];
+                echo "<label class='colored'>State:</label> <select name='state' style='width: 10%'>
+                    <option value='VIC'>VIC</option>
+                    <option value='NSW'>NSW</option>
+                    <option value='QLD'>QLD</option>
+                    <option value='NT'>NT</option>
+                    <option value='WA'>WA</option>
+                    <option value='SA'>SA</option>
+                    <option value='TAS'>TAS</option>
+                    <option value='ACT'>ACT</option>
+                </select>
+                ";
                 echo "<lable style='color: red'>$error</lable>";
+            else:
+                if ($_SESSION['state'] == "VIC") {
+                    echo "<label class='colored'>State:</label> <select name='state' disabled style='width: 10%'>
+                    <option value='VIC' selected>VIC</option>
+                    <option value='NSW'>NSW</option>
+                    <option value='QLD'>QLD</option>
+                    <option value='NT'>NT</option>
+                    <option value='WA'>WA</option>
+                    <option value='SA'>SA</option>
+                    <option value='TAS'>TAS</option>
+                    <option value='ACT'>ACT</option>
+                </select>
+                ";
+                } elseif ($_SESSION['state'] == "NSW") {
+                    echo "<label class='colored'>State:</label> <select name='state' disabled style='width: 10%'>
+                    <option value='VIC'>VIC</option>
+                    <option value='NSW' selected>NSW</option>
+                    <option value='QLD'>QLD</option>
+                    <option value='NT'>NT</option>
+                    <option value='WA'>WA</option>
+                    <option value='SA'>SA</option>
+                    <option value='TAS'>TAS</option>
+                    <option value='ACT'>ACT</option>
+                </select>
+                ";
+                } elseif ($_SESSION['state'] == "QLD") {
+                    echo "<label class='colored'>State:</label> <select name='state' disabled style='width: 10%'>
+                    <option value='VIC'>VIC</option>
+                    <option value='NSW'>NSW</option>
+                    <option value='QLD' selected>QLD</option>
+                    <option value='NT'>NT</option>
+                    <option value='WA'>WA</option>
+                    <option value='SA'>SA</option>
+                    <option value='TAS'>TAS</option>
+                    <option value='ACT'>ACT</option>
+                </select>
+                ";
+                } elseif ($_SESSION['state'] == "NT") {
+                    echo "<label class='colored'>State:</label> <select name='state' disabled style='width: 10%'>
+                    <option value='VIC'>VIC</option>
+                    <option value='NSW'>NSW</option>
+                    <option value='QLD'>QLD</option>
+                    <option value='NT' selected>NT</option>
+                    <option value='WA'>WA</option>
+                    <option value='SA'>SA</option>
+                    <option value='TAS'>TAS</option>
+                    <option value='ACT'>ACT</option>
+                </select>
+                ";
+                } elseif ($_SESSION['state'] == "WA") {
+                    echo "<label class='colored'>State:</label> <select name='state' disabled style='width: 10%'>
+                    <option value='VIC'>VIC</option>
+                    <option value='NSW'>NSW</option>
+                    <option value='QLD'>QLD</option>
+                    <option value='NT' >NT</option>
+                    <option value='WA' selected>WA</option>
+                    <option value='SA'>SA</option>
+                    <option value='TAS'>TAS</option>
+                    <option value='ACT'>ACT</option>
+                </select>
+                ";
+                } elseif ($_SESSION['state'] == "SA") {
+                    echo "<label class='colored'>State:</label> <select name='state' disabled style='width: 10%'>
+                    <option value='VIC'>VIC</option>
+                    <option value='NSW'>NSW</option>
+                    <option value='QLD'>QLD</option>
+                    <option value='NT'>NT</option>
+                    <option value='WA'>WA</option>
+                    <option value='SA' selected>SA</option>
+                    <option value='TAS'>TAS</option>
+                    <option value='ACT'>ACT</option>
+                </select>
+                ";
+                } elseif ($_SESSION['state'] == "TAS") {
+                    echo "<label class='colored'>State:</label> <select name='state' disabled style='width: 10%'>
+                    <option value='VIC'>VIC</option>
+                    <option value='NSW'>NSW</option>
+                    <option value='QLD'>QLD</option>
+                    <option value='NT'>NT</option>
+                    <option value='WA'>WA</option>
+                    <option value='SA'>SA</option>
+                    <option value='TAS' selected>TAS</option>
+                    <option value='ACT'>ACT</option>
+                </select>
+                ";
+                } elseif ($_SESSION['state'] == "ACT") {
+                    echo "<label class='colored'>State:</label> <select name='state' disabled style='width: 10%'>
+                    <option value='VIC'>VIC</option>
+                    <option value='NSW'>NSW</option>
+                    <option value='QLD'>QLD</option>
+                    <option value='NT'>NT</option>
+                    <option value='WA'>WA</option>
+                    <option value='SA'>SA</option>
+                    <option value='TAS'>TAS</option>
+                    <option value='ACT selected'>ACT</option>
+                </select>
+                ";
+                }
             endif;
             ?>
 
@@ -120,7 +231,7 @@
                 $error = $_SESSION['postCodeErrorMessage'];
                 echo "<input  pattern='[0-9]{4}' type='text' name='post-code' placeholder='$error' />";
             else:
-                echo "<input  pattern='[0-9]{4}' type='text' disabled name='post-code' />";
+                echo "<input  pattern='[0-9]{4}' type='text' value='{$_SESSION["postCode"]}' disabled name='post-code' />";
             endif;
             //            session_destroy();
             ?>
@@ -131,8 +242,9 @@
             if (isset($_SESSION['phoneErrorMessage'])):
                 $error = $_SESSION['phoneErrorMessage'];
                 echo "<input id='phone' pattern='[0-9]{10}' type='text' name='phone' placeholder='$error' />";
+                echo "<lable style='color: red'>$error</lable>";
             else:
-                echo "<input id='phone' pattern='[0-9]{10}' disabled type='text' name='phone' />";
+                echo "<input id='phone' pattern='[0-9]{10}'  value='{$_SESSION["phone"]} disabled type='text' name='phone' />";
             endif;
             //            session_destroy();
             ?>
@@ -140,20 +252,60 @@
 
         <fieldset class="fieldset">
             <legend>Please select the contact type：</legend>
-            <div>
-                <input type="radio" id="contactChoice1" class="contact" name="contact" value="email"/>
-                <label for="contactChoice1" class="contact">email</label>
 
-                <input type="radio" id="contactChoice2" class="contact" name="contact" value="phone"/>
-                <label for="contactChoice2" class="contact">phone</label>
-
-                <input type="radio" id="contactChoice3" class="contact" name="contact" value="mail"/>
-                <label for="contactChoice3" class="contact">mail</label>
-            </div>
             <?php
-            if (isset($_SESSION['contactErrorMessage']) && $_SESSION['contactErrorMessage'] !=''):
+            if (isset($_SESSION['contactErrorMessage']) && $_SESSION['contactErrorMessage'] != ''):
                 $error = $_SESSION['contactErrorMessage'];
+                echo "<div>
+                <input type='radio' id='contactChoice1' class='contact' name='contact' value='email'/>
+                <label for='contactChoice1' class='contact'>email</label>
+            
+                <input type='radio' id='contactChoice2' class='contact' name='contact' value='phone'/>
+                <label for='contactChoice2' class='contact'>phone</label>
+            
+                <input type='radio' id='contactChoice3' class='contact' name='contact' value='mail'/>
+                <label for='contactChoice3' class='contact'>mail</label>
+            </div>
+            ";
                 echo "<lable style='color: red'>&nbsp;&nbsp;&nbsp;&nbsp; $error</lable>";
+            else:
+                if ($_SESSION['contact'] == "email"){
+                    echo "<div>
+                <input type='radio' id='contactChoice1' class='contact' name='contact' checked value='email'/>
+                <label for='contactChoice1' class='contact'>email</label>
+            
+                <input type='radio' id='contactChoice2' class='contact' name='contact' value='phone'/>
+                <label for='contactChoice2' class='contact'>phone</label>
+            
+                <input type='radio' id='contactChoice3' class='contact' name='contact' value='mail'/>
+                <label for='contactChoice3' class='contact'>mail</label>
+            </div>
+            ";
+                }elseif ($_SESSION['contact'] == "phone"){
+                    echo "<div>
+                <input type='radio' id='contactChoice1' class='contact' name='contact'  value='email'/>
+                <label for='contactChoice1' class='contact'>email</label>
+            
+                <input type='radio' id='contactChoice2' class='contact' name='contact' checked value='phone'/>
+                <label for='contactChoice2' class='contact'>phone</label>
+            
+                <input type='radio' id='contactChoice3' class='contact' name='contact' value='mail'/>
+                <label for='contactChoice3' class='contact'>mail</label>
+            </div>
+            ";
+                }else{
+                    echo "<div>
+                <input type='radio' id='contactChoice1' class='contact' name='contact'  value='email'/>
+                <label for='contactChoice1' class='contact'>email</label>
+            
+                <input type='radio' id='contactChoice2' class='contact' name='contact'  value='phone'/>
+                <label for='contactChoice2' class='contact'>phone</label>
+            
+                <input type='radio' id='contactChoice3' class='contact' name='contact' checked value='mail'/>
+                <label for='contactChoice3' class='contact'>mail</label>
+            </div>
+            ";
+                }
             endif;
             //            session_destroy();
             ?>
@@ -209,9 +361,9 @@
             <?php
             if (isset($_SESSION['productErrorMessage'])):
                 $error = $_SESSION['productErrorMessage'];
-                echo "<input id='day' type='text' name='price' disabled placeholder='$error'/>";
+                echo "<input id='price' type='text' name='price' disabled placeholder='$error'/>";
             else:
-                echo "<input id='day' type='text' disabled name='price'/>";
+                echo "<input id='price' type='text' disabled name='price'/>";
             endif;
             ?>
         </label>
@@ -254,7 +406,7 @@
         <label id="real-address">
             <span>Real address :</span>
             <?php
-            if (isset($_SESSION['realAddressErrorMessage']) && $_SESSION['realAddressErrorMessage'] !=""):
+            if (isset($_SESSION['realAddressErrorMessage']) && $_SESSION['realAddressErrorMessage'] != ""):
                 $error = $_SESSION['realAddressErrorMessage'];
                 echo "<input id='hidden-input' type='text' name='real-address'/>";
             else:
@@ -283,21 +435,72 @@
 
         <fieldset class="fieldset">
             <legend>Credit card type：</legend>
-            <div>
-                <input type="radio" id="credit_type1" class="contact" name="credit_card" value="Visa"/>
-                <label for="contactChoice1" class="contact">Visa</label>
-
-                <input type="radio" id="credit_type2" class="contact" name="credit_card" value="Mastercard"/>
-                <label for="contactChoice2" class="contact">Mastercard</label>
-
-                <input type="radio" id="credit_type3" class="contact" name="credit_card" value="American Express"/>
-                <label for="contactChoice3" class="contact">American Express</label>
-            </div>
+            <!--            <div>-->
+            <!--                <input type="radio" id="credit_type1" class="contact" name="credit_card" value="Visa"/>-->
+            <!--                <label for="contactChoice1" class="contact">Visa</label>-->
+            <!---->
+            <!--                <input type="radio" id="credit_type2" class="contact" name="credit_card" value="Mastercard"/>-->
+            <!--                <label for="contactChoice2" class="contact">Mastercard</label>-->
+            <!---->
+            <!--                <input type="radio" id="credit_type3" class="contact" name="credit_card" value="American Express"/>-->
+            <!--                <label for="contactChoice3" class="contact">American Express</label>-->
+            <!--            </div>-->
 
             <?php
             if (isset($_SESSION['credit_cardErrorMessage']) && $_SESSION['credit_cardErrorMessage'] != ""):
                 $error = $_SESSION['credit_cardErrorMessage'];
+                echo "<div>
+                        <input type='radio' id='credit_type1' class='contact' name='credit_card' value='Visa'/>
+                        <label for='contactChoice1' class='contact'>Visa</label>
+                    
+                        <input type='radio' id='credit_type2' class='contact' name='credit_card' value='Mastercard'/>
+                        <label for='contactChoice2' class='contact'>Mastercard</label>
+                    
+                        <input type='radio' id='credit_type3' class='contact' name='credit_card' value='American Express'/>
+                        <label for='contactChoice3' class='contact'>American Express</label>
+                    </div>
+                ";
                 echo "<lable style='color: red'>&nbsp;&nbsp;&nbsp;&nbsp; $error</lable>";
+
+            else:
+                if ($_SESSION['credit_card'] == "Visa") {
+                    echo "<div>
+                        <input type='radio' disabled id='credit_type1' class='contact' name='credit_card' checked value='Visa'/>
+                        <label for='contactChoice1' class='contact'>Visa</label>
+                    
+                        <input type='radio' disabled id='credit_type2' class='contact' name='credit_card' value='Mastercard'/>
+                        <label for='contactChoice2' class='contact'>Mastercard</label>
+                    
+                        <input type='radio'  disabled id='credit_type3' class='contact' name='credit_card' value='American Express'/>
+                        <label for='contactChoice3' class='contact'>American Express</label>
+                    </div>
+                ";
+                } elseif ($_SESSION['credit_card'] == "Mastercard") {
+                    echo "<div>
+                        <input type='radio' disabled id='credit_type1' class='contact' name='credit_card'  value='Visa'/>
+                        <label for='contactChoice1' class='contact'>Visa</label>
+                    
+                        <input type='radio' disabled id='credit_type2' class='contact' name='credit_card'  checked value='Mastercard'/>
+                        <label for='contactChoice2' class='contact'>Mastercard</label>
+                    
+                        <input type='radio'  disabled id='credit_type3' class='contact' name='credit_card' value='American Express'/>
+                        <label for='contactChoice3' class='contact'>American Express</label>
+                    </div>
+                ";
+                } else {
+                    echo "<div>
+                        <input type='radio' disabled id='credit_type1' class='contact' name='credit_card'  value='Visa'/>
+                        <label for='contactChoice1' class='contact'>Visa</label>
+                    
+                        <input type='radio' disabled id='credit_type2' class='contact' name='credit_card'   value='Mastercard'/>
+                        <label for='contactChoice2' class='contact'>Mastercard</label>
+                    
+                        <input type='radio'  disabled id='credit_type3' class='contact' name='credit_card' checked value='American Express'/>
+                        <label for='contactChoice3' class='contact'>American Express</label>
+                    </div>
+                ";
+                }
+
             endif;
             ?>
 
@@ -310,8 +513,9 @@
             if (isset($_SESSION["creditNameErrorMessage"])):
                 $error = $_SESSION['creditNameErrorMessage'];
                 echo "<input id='credit-name' type='text' name='creditName' placeholder='$error'/>";
+                echo "<lable style='color: red'>{$_SESSION["creditNameErrorMessage"]}</lable>";
             else:
-                echo "<input id='credit-name' type='text' disabled name='creditName'/>";
+                echo "<input id='credit-name' type='text' disabled   name='creditName'/>";
             endif;
             ?>
         </label>
@@ -324,7 +528,7 @@
                 $error = $_SESSION['creditNumberErrorMessage'];
                 echo "<input id='credit-number' type='text' name='creditNumber' placeholder='$error'/>";
             else:
-                echo "<input id='credit-number' type='text' disabled name='creditNumber'/>";
+                echo "<input id='credit-number' type='text' disabled value='{$_SESSION["creditNumber"]}' name='creditNumber'/>";
             endif;
             ?>
 
@@ -337,11 +541,11 @@
             if (isset($_SESSION['expiryDataErrorMessage'])):
                 $error = $_SESSION['expiryDataErrorMessage'];
                 echo "<input id='expiry-date' type='text' pattern='(0[1-9]|1[0-2])-[0-9]{2}' name='expiryData' placeholder='$error'/>";
+                echo "<input id='expiry-date' type='text' pattern='(0[1-9]|1[0-2])-[0-9]{2}' name='expiryData' placeholder='$error'/>";
             else:
-                echo "<input id='expiry-date' type='text' disabled  pattern='(0[1-9]|1[0-2])-[0-9]{2}' name='expiryData'/>";
+                echo "<input id='expiry-date' type='text' disabled value='{$_SESSION["expiryData"]}'  pattern='(0[1-9]|1[0-2])-[0-9]{2}' name='expiryData'/>";
             endif;
             ?>
-
 
 
         </label>
@@ -354,9 +558,8 @@
                 $error = $_SESSION['cvvErrorMessage'];
                 echo "<input id='cvv' type='text' name='cvv' placeholder='$error'/>";
             else:
-                echo "<input id='cvv' type='text' disabled name='cvv'/>";
+                echo "<input id='cvv' type='text'  disabled value='{$_SESSION["cvv"]}' disabled name='cvv'/>";
             endif;
-            session_destroy();
             ?>
         </label>
 

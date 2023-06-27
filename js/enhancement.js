@@ -227,7 +227,6 @@ function init() {
     changeStyle();
     if (document.getElementById("different") != null) {
         document.getElementById("different").onclick = changeVisibility;
-        alert("调用")
     }
     enhancement3();
     var regitser = document.getElementById("register");

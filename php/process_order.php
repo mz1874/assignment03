@@ -24,25 +24,27 @@ function validatePhone($email)
 
 $validate = true;
 session_start();
-
-if (isset($_POST["name"]) && $_POST["name"] != '') {
+if (isset($_POST["name"]) || isset($_SESSION["name"])) {
     $name = sanitize($_POST["name"]);
+    $_SESSION['name'] = $name;
 } else {
     $nameErrorMessage = "Please input your first name.\n";
     $_SESSION['nameErrorMessage'] = $nameErrorMessage;
     $validate = false;
 }
 
-if (isset($_POST["last-name"]) && $_POST["last-name"] != '') {
+if (isset($_POST["last-name"]) || isset($_SESSION["last-name"])) {
     $lastName = sanitize($_POST["last-name"]);
+    $_SESSION['lastName'] = $lastName;
 } else {
     $lastNameErrorMessage = "Please input your last name.\n";
     $_SESSION['lastNameErrorMessage'] = $lastNameErrorMessage;
     $validate = false;
 }
 
-if (isset($_POST["email"]) && $_POST["email"] != '') {
+if (isset($_POST["email"]) || isset($_SESSION["email"])) {
     $email = sanitize($_POST["email"]);
+    $_SESSION['email'] = $email;
     if (!validateEmail($email)) {
         $validate = false;
         $emailErrorMessage = "Your mail is invalid\n";
@@ -56,6 +58,7 @@ if (isset($_POST["email"]) && $_POST["email"] != '') {
 
 if (isset($_POST["address"]) && $_POST["address"] != '') {
     $address = sanitize($_POST["address"]);
+    $_SESSION['address'] = $address;
 } else {
     $addressErrorMessage = "Please input your address.\n";
     $_SESSION['addressErrorMessage'] = $addressErrorMessage;
@@ -64,6 +67,7 @@ if (isset($_POST["address"]) && $_POST["address"] != '') {
 
 if (isset($_POST["town"]) && $_POST["town"] != '') {
     $town = sanitize($_POST["town"]);
+    $_SESSION['town'] = $town;
 } else {
     $townErrorMessage = "Please input your town.\n";
     $_SESSION['townErrorMessage'] = $townErrorMessage;
@@ -73,14 +77,16 @@ if (isset($_POST["town"]) && $_POST["town"] != '') {
 
 if (isset($_POST["state"])) {
     $state = sanitize($_POST["state"]);
+    $_SESSION['state'] = $state;
 } else {
     $stateErrorMessage = "Please select your state.\n";
     $_SESSION['stateErrorMessage'] = $stateErrorMessage;
     $validate = false;
 }
 
-if (isset($_POST["post-code"]) && isset($_POST["state"])) {
+if (isset($_POST["post-code"])) {
     $postCode = sanitize($_POST["post-code"]);
+    $_SESSION['postCode'] = $postCode;
     $substr = substr($postCode, 0, 1);
     $index = intval($substr);
     switch ($state) {
@@ -152,6 +158,7 @@ if (isset($_POST["post-code"]) && isset($_POST["state"])) {
 
 if (isset($_POST["phone"]) && $_POST['phone'] != '') {
     $phone = sanitize($_POST["phone"]);
+    $_SESSION['phone'] = $phone;
     if (!validatePhone(validatePhone($phone))) {
         $validate = false;
         $phoneErrorMessage = "Your phone number is invalid\n";
@@ -163,18 +170,18 @@ if (isset($_POST["phone"]) && $_POST['phone'] != '') {
     $validate = false;
 }
 
-//if (isset($_POST["contact"])) {
-//    $contact = sanitize($_POST["contact"]);
-//} else {
-//    echo $_POST["contact"];contactErrorMessage;
-//    $contactErrorMessage = "Please select your contact type.\n";
-//    $_SESSION['contactErrorMessage'] = $contactErrorMessage;
-//    $validate = false;
-//}
-echo $_POST['contact'];
+if (isset($_POST["contact"])) {
+    $contact = sanitize($_POST["contact"]);
+    $_SESSION['contact'] = $contact;
+} else {
+    $contactErrorMessage = "Please select your contact type.\n";
+    $_SESSION['contactErrorMessage'] = $contactErrorMessage;
+    $validate = false;
+}
 
 if (isset($_POST["product"])) {
     $product = sanitize($_POST["product"]);
+    $_SESSION['product'] = $product;
 } else {
     $productErrorMessage = "Please select your product\n";
     $_SESSION['productErrorMessage'] = $productErrorMessage;
@@ -183,6 +190,7 @@ if (isset($_POST["product"])) {
 
 if (isset($_POST["quality"]) && $_POST["quality"] != "") {
     $quality = sanitize($_POST["quality"]);
+    $_SESSION['quality'] = $quality;
 } else {
     $qualityErrorMessage = "Please input your quality number.\n";
     $_SESSION['qualityErrorMessage'] = $qualityErrorMessage;
@@ -191,6 +199,7 @@ if (isset($_POST["quality"]) && $_POST["quality"] != "") {
 
 if (isset($_POST["day"]) && $_POST["day"] != '') {
     $day = sanitize($_POST["day"]);
+    $_SESSION['day'] = $day;
 } else {
     $dayErrorMessage = "Please input your day\n";
     $_SESSION['dayErrorMessage'] = $dayErrorMessage;
@@ -199,6 +208,7 @@ if (isset($_POST["day"]) && $_POST["day"] != '') {
 
 if (isset($_POST["price"])) {
     $price = sanitize($_POST["price"]);
+    $_SESSION['price'] = $price;
 } else {
     $priceErrorMessage = "You did not select a product\n";
     $_SESSION['priceErrorMessage'] = $priceErrorMessage;
@@ -207,6 +217,7 @@ if (isset($_POST["price"])) {
 
 if (isset($_POST["cost"])) {
     $cost = sanitize($_POST["cost"]);
+    $_SESSION['cost'] = $cost;
 } else {
     $costErrorMessage = "You did not select a product or did not input the day or quality\n";
     $_SESSION['costErrorMessage'] = $costErrorMessage;
@@ -215,6 +226,7 @@ if (isset($_POST["cost"])) {
 
 if (isset($_POST["type1"]) && $_POST["type1"] != "") {
     $type1 = sanitize($_POST["type1"]);
+    $_SESSION['type1'] = $type1;
 } else {
     $type1ErrorMessage = "You did not select the product type \n";
     $_SESSION['type1ErrorMessage'] = $type1ErrorMessage;
@@ -224,6 +236,7 @@ if (isset($_POST["type1"]) && $_POST["type1"] != "") {
 
 if (isset($_POST["real-address"]) && $_POST["real-address"] != '') {
     $realAddress = sanitize($_POST["real-address"]);
+    $_SESSION['realAddress'] = $realAddress;
 }
 //else {
 //    $realAddressErrorMessage = "You did not input the real-address \n";
@@ -233,6 +246,7 @@ if (isset($_POST["real-address"]) && $_POST["real-address"] != '') {
 
 if (isset($_POST["message"]) && $_POST["message"] != "") {
     $message = sanitize($_POST["message"]);
+    $_SESSION['message'] = $message;
 } else {
     $messageErrorMessage = "You did not input message \n";
     $_SESSION['messageErrorMessage'] = $messageErrorMessage;
@@ -242,23 +256,32 @@ if (isset($_POST["message"]) && $_POST["message"] != "") {
 
 if (isset($_POST["credit_card"])) {
     $credit_card = sanitize($_POST["credit_card"]);
+    $_SESSION['credit_card'] = $credit_card;
 } else {
     $credit_cardErrorMessage = "You did not select the card type \n";
     $_SESSION['credit_cardErrorMessage'] = $credit_cardErrorMessage;
     $validate = false;
 }
 
-if (isset($_POST["creditName"]) && trim($_POST["creditName"]) !='') {
+if (isset($_POST["creditName"]) && trim($_POST["creditName"]) != '') {
     $creditName = sanitize($_POST["creditName"]);
+    if (strlen($creditName) > 40) {
+        $validate = false;
+        $_SESSION['creditNameErrorMessage'] = "maximum of 40 characters of creditName ";
+    }
+    $regex = '/^[A-Za-z\s]+$/';
+    if (!preg_match($regex, $creditName)) {
+        $validate = false;
+        $_SESSION['creditNameErrorMessage'] = "The creditCard name should has only alphabetical and space";
+    }
 } else {
     $creditNameErrorMessage = "You did not input the credit card Name \n";
     $_SESSION['creditNameErrorMessage'] = $creditNameErrorMessage;
     $validate = false;
 }
-
-
-if (isset($_POST["creditNumber"]) && $_POST["creditNumber"] !='') {
+if (isset($_POST["creditNumber"]) && $_POST["creditNumber"] != '') {
     $creditNumber = sanitize($_POST["creditNumber"]);
+    $_SESSION['creditNumber'] = $creditNumber;
 } else {
     $creditNumberErrorMessage = "You did not input the creditNumber \n";
     $_SESSION['creditNumberErrorMessage'] = $creditNumberErrorMessage;
@@ -266,16 +289,53 @@ if (isset($_POST["creditNumber"]) && $_POST["creditNumber"] !='') {
 }
 
 
-if (isset($_POST["expiryData"]) && $_POST["expiryData"] !='') {
+$cardLength = strlen($creditNumber);
+$firstNumberOfCard = intval(substr($creditNumber, 0, 1));
+$firstTwoNumberOfCard = intval(substr($creditNumber, 0, 2));
+
+switch ($credit_card) {
+    case 'Visa':
+        if (!($cardLength === 16 && $firstNumberOfCard === 4)) {
+            $validate = false;
+            $_SESSION['creditNumberErrorMessage'] = "Visa cards have 16 digits and start with a 4";
+        }
+        break;
+    case 'Mastercard':
+        if (!($cardLength === 16 && ($firstTwoNumberOfCard >= 51 && $firstTwoNumberOfCard <= 55))) {
+            $validate = false;
+            $_SESSION['creditNumberErrorMessage'] = "MasterCard have 16 digits and start with digits 51 through to 55";
+        }
+        break;
+    case 'American Express':
+        if (!($cardLength === 15 && ($firstTwoNumberOfCard === 34 || $firstTwoNumberOfCard === 37))) {
+            $validate = false;
+            $_SESSION['creditNumberErrorMessage'] = "American Express has 15 digits and starts with 34 or 37 ";
+        }
+        break;
+    default:
+        // 处理未知卡类型
+        $validate = false;
+        $_SESSION['creditNumberErrorMessage'] = "Invalid card type";
+        break;
+}
+
+
+if (isset($_POST["expiryData"]) && $_POST["expiryData"] != '') {
     $expiryData = sanitize($_POST["expiryData"]);
+    $_SESSION['expiryData'] = $expiryData;
+    if (!preg_match('/(0[1-9]|1[0-2])-[0-9]{2}/', $expiryData)) {
+        $_SESSION['expiryDataErrorMessage'] = "the format of expiry data is incorrect ";
+        $validate = false;
+    }
 } else {
     $expiryDataErrorMessage = "You did not input the expiryData \n";
     $_SESSION['expiryDataErrorMessage'] = $expiryDataErrorMessage;
     $validate = false;
 }
 
-if (isset($_POST["cvv"]) && $_POST["cvv"] !='') {
+if (isset($_POST["cvv"]) && $_POST["cvv"] != '') {
     $cvv = sanitize($_POST["cvv"]);
+    $_SESSION['cvv'] = $cvv;
 } else {
     $errorMessage = "You did not input the cvv \n";
     $_SESSION['cvvErrorMessage'] = $errorMessage;
@@ -283,13 +343,16 @@ if (isset($_POST["cvv"]) && $_POST["cvv"] !='') {
 }
 
 
-if ($validate == false) {
-    header("location:fix_order.php");
-}
+//if ($validate == false) {
+//    header("location:fix_order.php");
+//} else {
+//
+//}
 
 foreach ($_SESSION as $key => $value) {
     echo "Key: $key, Value: $value<br>";
 }
+
 //echo $state;
 //echo $stateErrorMessage
 //echo $expiryDataErrorMessage;
