@@ -6,8 +6,8 @@
     <link rel="stylesheet" type="text/css" href="../styles/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--    <script src="js/enquire.js"></script>-->
-<!--        <script src="../js/part2.js"></script>-->
-<!--        <script src="../js/enhancement.js"></script>-->
+    <!--        <script src="../js/part2.js"></script>-->
+    <!--        <script src="../js/enhancement.js"></script>-->
 
 </head>
 
@@ -27,6 +27,15 @@
 </div>
 
 
+<?php
+session_start();
+foreach ($_SESSION as $key => $value) {
+    echo "Key: $key, Value: $value<br>";
+}
+
+?>
+
+
 <div class="form form-payment">
     <form id="enquire-form" action="process_order.php" method="post" novalidate="novalidate" class="basic-grey">
         <h1 style="color: red">Fix Detail information
@@ -36,7 +45,6 @@
         <label>
             <span class="colored">First name :</span>
             <?php
-            session_start();
             if (isset($_SESSION['nameErrorMessage'])):
                 $error = $_SESSION['nameErrorMessage'];
                 echo "<input id='first-name' pattern='[a-zA-z]{1,25}' type='text' name='name' placeholder='$error' />";
@@ -44,7 +52,7 @@
                     echo "<lable style='color: red'>&nbsp;&nbsp;&nbsp;&nbsp; {$_SESSION["nameErrorMessage2"]} </lable>";
                 endif;
             else:
-                echo "<input id='first-name' pattern='[a-zA-z]{1,25}' type='text' value='{$_SESSION["name"]}' disabled name='name' />";
+                echo "<input id='first-name' pattern='[a-zA-z]{1,25}' type='text' value='{$_SESSION["name"]} ' disabled name='name' />";
             endif;
             //            session_destroy();
             ?>
@@ -244,7 +252,7 @@
                 echo "<input id='phone' pattern='[0-9]{10}' type='text' name='phone' placeholder='$error' />";
                 echo "<lable style='color: red'>$error</lable>";
             else:
-                echo "<input id='phone' pattern='[0-9]{10}'  value='{$_SESSION["phone"]} disabled type='text' name='phone' />";
+                echo "<input id='phone' pattern='[0-9]{10}'  value='{$_SESSION["phone"]}' disabled type='text' name='phone' />";
             endif;
             //            session_destroy();
             ?>
@@ -269,7 +277,7 @@
             ";
                 echo "<lable style='color: red'>&nbsp;&nbsp;&nbsp;&nbsp; $error</lable>";
             else:
-                if ($_SESSION['contact'] == "email"){
+                if ($_SESSION['contact'] == "email") {
                     echo "<div>
                 <input type='radio' id='contactChoice1' class='contact' name='contact' checked value='email'/>
                 <label for='contactChoice1' class='contact'>email</label>
@@ -281,7 +289,7 @@
                 <label for='contactChoice3' class='contact'>mail</label>
             </div>
             ";
-                }elseif ($_SESSION['contact'] == "phone"){
+                } elseif ($_SESSION['contact'] == "phone") {
                     echo "<div>
                 <input type='radio' id='contactChoice1' class='contact' name='contact'  value='email'/>
                 <label for='contactChoice1' class='contact'>email</label>
@@ -293,7 +301,7 @@
                 <label for='contactChoice3' class='contact'>mail</label>
             </div>
             ";
-                }else{
+                } else {
                     echo "<div>
                 <input type='radio' id='contactChoice1' class='contact' name='contact'  value='email'/>
                 <label for='contactChoice1' class='contact'>email</label>
@@ -334,7 +342,7 @@
                 $error = $_SESSION['qualityErrorMessage'];
                 echo "<input id='quality' type='text'  name='quality' placeholder='$error'/>";
             else:
-                echo "<input id='quality' type='text' disabled  name='quality'/>";
+                echo "<input id='quality' type='text' disabled value='{$_SESSION["quality"]}' name='quality'/>";
             endif;
             //            session_destroy();
             ?>
@@ -348,7 +356,7 @@
                 $error = $_SESSION['dayErrorMessage'];
                 echo "<input id='day' type='text' name='day' placeholder='$error'/>";
             else:
-                echo "<input id='day' type='text' disabled name='day'/>";
+                echo "<input id='day' type='text'  value='{$_SESSION["day"]}' disabled name='day'/>";
             endif;
             ?>
 
@@ -363,7 +371,7 @@
                 $error = $_SESSION['productErrorMessage'];
                 echo "<input id='price' type='text' name='price' disabled placeholder='$error'/>";
             else:
-                echo "<input id='price' type='text' disabled name='price'/>";
+                echo "<input id='price' type='text' value='{$_SESSION["price"]}'  disabled name='price'/>";
             endif;
             ?>
         </label>
@@ -376,7 +384,7 @@
                 $error = $_SESSION['productErrorMessage'];
                 echo "<input id='cost' type='text' name='cost' disabled placeholder='$error'/>";
             else:
-                echo "<input id='cost' type='text' name='cost' disabled/>";
+                echo "<input id='cost' type='text' value='{$_SESSION["cost"]}' name='cost' disabled/>";
             endif;
             ?>
 
@@ -410,7 +418,7 @@
                 $error = $_SESSION['realAddressErrorMessage'];
                 echo "<input id='hidden-input' type='text' name='real-address'/>";
             else:
-                echo "<input id='hidden-input' type='text' disabled name='real-address'/>";
+                echo "<input id='hidden-input' type='text'  disabled name='real-address'/>";
             endif;
             ?>
 
@@ -424,8 +432,8 @@
                 echo "<textarea id='message'  style='margin-top: 10px' name='message'
                       placeholder='$error'></textarea>";
             else:
-                echo "<textarea id='message'  style='margin-top: 10px' name='message'
-                      placeholder='Your Message to Us' disabled></textarea>";
+                echo "<textarea id='message'  style='margin-top: 10px' value='' name='message'
+                      placeholder='Your Message to Us' disabled>{$_SESSION["message"]}</textarea>";
             endif;
             ?>
 
@@ -560,6 +568,7 @@
             else:
                 echo "<input id='cvv' type='text'  disabled value='{$_SESSION["cvv"]}' disabled name='cvv'/>";
             endif;
+            session_destroy();
             ?>
         </label>
 
@@ -588,4 +597,17 @@
     </div>
 </footer>
 </body>
+<script>
+
+    function enableAllElement() {
+        var disabledElements = document.querySelectorAll('[disabled]');
+        disabledElements.forEach(e => {
+            e.disabled = false
+        });
+    }
+    document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("enquire-form").onsubmit = enableAllElement;
+    })
+
+</script>
 </html>

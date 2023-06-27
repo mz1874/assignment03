@@ -159,11 +159,11 @@ if (isset($_POST["post-code"])) {
 if (isset($_POST["phone"]) && $_POST['phone'] != '') {
     $phone = sanitize($_POST["phone"]);
     $_SESSION['phone'] = $phone;
-    if (!validatePhone(validatePhone($phone))) {
-        $validate = false;
-        $phoneErrorMessage = "Your phone number is invalid\n";
-        $_SESSION['phoneErrorMessage'] = $phoneErrorMessage;
-    }
+//    if (!validatePhone(validatePhone($phone))) {
+//        $validate = false;
+//        $phoneErrorMessage = "Your phone number is invalid\n";
+//        $_SESSION['phoneErrorMessage'] = $phoneErrorMessage;
+//    }
 } else {
     $phoneErrorMessage = "Please input your phone number.\n";
     $_SESSION['phoneErrorMessage'] = $phoneErrorMessage;
@@ -274,6 +274,7 @@ if (isset($_POST["creditName"]) && trim($_POST["creditName"]) != '') {
         $validate = false;
         $_SESSION['creditNameErrorMessage'] = "The creditCard name should has only alphabetical and space";
     }
+    $_SESSION['creditName'] = $creditName;
 } else {
     $creditNameErrorMessage = "You did not input the credit card Name \n";
     $_SESSION['creditNameErrorMessage'] = $creditNameErrorMessage;
@@ -343,11 +344,11 @@ if (isset($_POST["cvv"]) && $_POST["cvv"] != '') {
 }
 
 
-//if ($validate == false) {
-//    header("location:fix_order.php");
-//} else {
-//
-//}
+if ($validate == false) {
+    header("location:fix_order.php");
+} else {
+
+}
 
 foreach ($_SESSION as $key => $value) {
     echo "Key: $key, Value: $value<br>";
